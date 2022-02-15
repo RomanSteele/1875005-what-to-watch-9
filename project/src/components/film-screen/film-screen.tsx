@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-export default function FilmScreen(): JSX.Element {
+function FilmScreen(): JSX.Element {
   return(
     <>
       <div className="film-card__wrap film-card__translate-top">
@@ -88,3 +88,5 @@ export default function FilmScreen(): JSX.Element {
       </div>
     </>);
 }
+
+export default FilmScreen;

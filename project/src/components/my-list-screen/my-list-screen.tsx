@@ -1,5 +1,5 @@
 
-export default function MyListScreen(): JSX.Element {
+function MyListScreen(): JSX.Element {
   return(
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -90,3 +90,5 @@ export default function MyListScreen(): JSX.Element {
       </div>
     </section>);
 }
+
+export default MyListScreen;

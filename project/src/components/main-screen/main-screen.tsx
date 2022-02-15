@@ -1,9 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import SingleCard from '../single-card/single-card';
+import Footer from '../footer/footer';
 
 const CARDS_ARRAY_LENGTH = 20;
 
-const cardsCount = [...Array(CARDS_ARRAY_LENGTH)];
+const FOR_ARRAY_RANDOM_NUMBER = 999;
+
+const cardsCount = Array.from({length: CARDS_ARRAY_LENGTH}, () => Math.floor(Math.random()*FOR_ARRAY_RANDOM_NUMBER));
+
 
 type MainScreenProps = {
   title: string;
@@ -11,7 +15,7 @@ type MainScreenProps = {
   year: number;
 }
 
-export default function MainScreen({title,genre,year}:MainScreenProps): JSX.Element {
+function MainScreen({title,genre,year}:MainScreenProps): JSX.Element {
   return(
     <>
       <section className="film-card">
@@ -112,14 +116,17 @@ export default function MainScreen({title,genre,year}:MainScreenProps): JSX.Elem
           </ul>
 
           <div className="catalog__films-list">
-            {cardsCount.map(() => SingleCard())}
+            {cardsCount.map((number) => <SingleCard key={number}/>)}
           </div>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
         </section>
+        <Footer />
       </div>
     </>
   );
 }
+
+export default MainScreen;

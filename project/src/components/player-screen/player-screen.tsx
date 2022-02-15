@@ -1,5 +1,5 @@
 
-export default function MyListScreen(): JSX.Element {
+function PlayerScreen(): JSX.Element {
   return(
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
@@ -34,3 +34,5 @@ export default function MyListScreen(): JSX.Element {
       </div>
     </div>);
 }
+
+export default PlayerScreen;

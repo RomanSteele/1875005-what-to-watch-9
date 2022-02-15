@@ -1,4 +1,6 @@
-export default function SingleCard(): JSX.Element {
+
+
+function SingleCard(): JSX.Element {
   return(
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
@@ -9,3 +11,5 @@ export default function SingleCard(): JSX.Element {
       </h3>
     </article>);
 }
+
+export default SingleCard;

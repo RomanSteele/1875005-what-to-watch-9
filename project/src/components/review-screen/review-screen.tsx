@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-export default function ReviewScreen(): JSX.Element {
+function ReviewScreen(): JSX.Element {
   return(
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -95,3 +95,5 @@ export default function ReviewScreen(): JSX.Element {
 
     </section>);
 }
+
+export default ReviewScreen;

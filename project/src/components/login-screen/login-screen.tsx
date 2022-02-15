@@ -1,5 +1,5 @@
 
-export default function LoginScreen(): JSX.Element {
+function LoginScreen(): JSX.Element {
   return(
 
 
@@ -21,3 +21,5 @@ export default function LoginScreen(): JSX.Element {
       </form>
     </div>);
 }
+
+export default  LoginScreen;
