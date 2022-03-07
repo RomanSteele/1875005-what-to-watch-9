@@ -1,8 +1,16 @@
+import {Film} from '../../types/film';
 
-function PlayerScreen(): JSX.Element {
+type PlayerScreenProps = {
+  film: Film,
+}
+
+function PlayerScreen({film}:PlayerScreenProps): JSX.Element {
+
+  const {videoLink, posterImage} = film;
+
   return(
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={videoLink} className="player__video" poster={posterImage}></video>
 
       <button type="button" className="player__exit">Exit</button>
 

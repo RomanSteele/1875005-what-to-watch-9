@@ -5,25 +5,25 @@ import MainScreen from '../main-screen/main-screen';
 import LoginScreen from '../login-screen/login-screen';
 import MyListScreen from '../my-list-screen/my-list-screen';
 import PlayerScreen from '../player-screen/player-screen';
-import ReviewScreen from '../review-screen/review-screen';
+import AddReviewScreen from '../add-review-screen/add-review-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import FilmScreen from '../film-screen/film-screen';
 
+import {Film} from '../../types/film';
 
 type AppScreenProps = {
-  title: string;
-  genre: string;
-  year: number;
+  films: Film[];
+  film: Film;
 }
 
-function App({title,genre,year}: AppScreenProps): JSX.Element {
+function App({films, film}: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen  title ={title} genre ={genre} year={year} />}
+          element={<MainScreen  films = {films}/>}
         />
         <Route
           path={AppRoute.Login}
@@ -31,7 +31,7 @@ function App({title,genre,year}: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmScreen />}
+          element={<FilmScreen film = {film}/>}
         />
         <Route
           path={AppRoute.MyList}
@@ -39,17 +39,17 @@ function App({title,genre,year}: AppScreenProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.Authorized}
             >
-              <MyListScreen />
+              <MyListScreen films = {films}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerScreen />}
+          element={<PlayerScreen film = {film} />}
         />
         <Route
           path={AppRoute.Review}
-          element={<ReviewScreen />}
+          element={<AddReviewScreen film = {film}/>}
         />
         <Route
           path="*"

@@ -1,21 +1,13 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import SingleCard from '../single-card/single-card';
 import Footer from '../footer/footer';
-
-const CARDS_ARRAY_LENGTH = 20;
-
-const FOR_ARRAY_RANDOM_NUMBER = 999;
-
-const cardsCount = Array.from({length: CARDS_ARRAY_LENGTH}, () => Math.floor(Math.random()*FOR_ARRAY_RANDOM_NUMBER));
+import {Film} from '../../types/film';
+import FilmsList from '../films-list/films-list';
 
 
 type MainScreenProps = {
-  title: string;
-  genre: string;
-  year: number;
+  films: Film[];
 }
 
-function MainScreen({title,genre,year}:MainScreenProps): JSX.Element {
+function MainScreen({films}:MainScreenProps): JSX.Element {
   return(
     <>
       <section className="film-card">
@@ -53,10 +45,10 @@ function MainScreen({title,genre,year}:MainScreenProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{films[0].name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{year}</span>
+                <span className="film-card__genre">{films[0].genre}</span>
+                <span className="film-card__year">{films[0].released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -116,7 +108,7 @@ function MainScreen({title,genre,year}:MainScreenProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            {cardsCount.map((number) => <SingleCard key={number}/>)}
+            <FilmsList films={films} />
           </div>
 
           <div className="catalog__more">

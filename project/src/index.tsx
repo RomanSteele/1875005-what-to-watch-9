@@ -1,16 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-
-const Setting = {
-  Title: 'The Grand Budapest Hotel',
-  Genre: 'Drama',
-  Year: 2014,
-} as const;
+import {films} from './mocks/films';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App  title = {Setting.Title} genre = {Setting.Genre} year = {Setting.Year} />
+    <App  films = {films} film={films[1]}/>
   </React.StrictMode>,
   document.getElementById('root'));
