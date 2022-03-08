@@ -1,18 +1,20 @@
 import { useState } from 'react';
-import { Stars } from '../../types/stars';
+import StarContext from '../../context';
 import  RatingStars  from '../../components/rating-stars/rating-stars';
+import { useContext } from 'react';
 
-type AddReviewFormProps = {
-stars: Stars[];
-}
 
-function AddReviewForm({ stars }: AddReviewFormProps): JSX.Element {
+function AddReviewForm( ): JSX.Element {
   const [commentData, setCommentData] = useState('');
   const commentAddHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const enteredComment = event.target.value;
     setCommentData(enteredComment);
   };
+
+  const stars = useContext(StarContext);
+
   return (
+
     <form action="#" className="add-review__form">
       <div className="rating">
         <RatingStars stars={stars}/>

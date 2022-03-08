@@ -3,14 +3,13 @@ import { Film } from '../../types/film';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import { Stars } from '../../types/stars';
+
 
 type AddReviewScreenProps = {
   film: Film;
-  stars: Stars[];
 };
 
-function ReviewScreen({ film, stars }: AddReviewScreenProps): JSX.Element {
+function ReviewScreen({ film }: AddReviewScreenProps): JSX.Element {
   const { name, previewImage } = film;
   return (
     <section className="film-card film-card--full">
@@ -42,7 +41,7 @@ function ReviewScreen({ film, stars }: AddReviewScreenProps): JSX.Element {
       </div>
 
       <div className="add-review">
-        <AddReviewForm stars={stars}/>
+        <AddReviewForm />
       </div>
 
     </section>);
