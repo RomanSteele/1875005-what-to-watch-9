@@ -1,15 +1,22 @@
+import { Film } from '../../types/film';
+import { Link } from 'react-router-dom';
 
+type SingleCardScreenProps = {
+  film: Film;
+}
 
-function SingleCard(): JSX.Element {
-  return(
-    <article className="small-film-card catalog__films-card">
+function SingleCard({ film }: SingleCardScreenProps): JSX.Element {
+  const { name, previewImage, id } = film;
+  return (
+    <>
       <div className="small-film-card__image">
-        <img src="img/midnight-special.jpg" alt="Midnight Special" width="280" height="175" />
+        <img src={previewImage} alt={name} width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">Midnight Special</a>
+        <Link className="small-film-card__link" to={`/films/${id}`}>{name}</Link>
       </h3>
-    </article>);
+    </>
+  );
 }
 
 export default SingleCard;

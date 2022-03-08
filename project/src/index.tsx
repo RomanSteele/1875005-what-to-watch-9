@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app/app';
+import App from './app/app';
+import { films } from './mocks/films';
+import { stars } from './mocks/stars';
+import StarContext from './context';
 
-const Setting = {
-  Title: 'The Grand Budapest Hotel',
-  Genre: 'Drama',
-  Year: 2014,
-} as const;
+function Main() {
+  return (
+    <React.StrictMode>
+      <StarContext.Provider value={ stars }>
+        <App  films={films} />
+      </StarContext.Provider>
+    </React.StrictMode>);
 
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App  title = {Setting.Title} genre = {Setting.Genre} year = {Setting.Year} />
-  </React.StrictMode>,
+  <Main />,
   document.getElementById('root'));

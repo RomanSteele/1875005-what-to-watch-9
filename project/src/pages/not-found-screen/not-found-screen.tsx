@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
+import UserBlock from '../../components/user-block/user-block';
 
 function NotFoundScreen(): JSX.Element{
-  return(
+  return (
     <div className="user-page">
       <header className="page-header user-page__head">
       </header>
@@ -12,7 +13,9 @@ function NotFoundScreen(): JSX.Element{
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W&#8656;</span>
         </Link>
+
       </div>
+      <UserBlock />
     </div>
 
   );
