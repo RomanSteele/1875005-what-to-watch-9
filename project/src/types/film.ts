@@ -1,5 +1,4 @@
 export type Film = {
-
 id: number;
 name: string;
 posterImage: string;
@@ -12,7 +11,7 @@ description: string;
 rating: number;
 scoresCount: number;
 director: string;
-starring: [string];
+starring: string[];
 runTime: number;
 genre: string;
 released: number;

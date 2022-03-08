@@ -1,14 +1,14 @@
-import {Film} from '../../types/film';
+import { Film } from '../../types/film';
 
 type PlayerScreenProps = {
   film: Film,
 }
 
-function PlayerScreen({film}:PlayerScreenProps): JSX.Element {
+function PlayerScreen({ film }: PlayerScreenProps): JSX.Element {
 
-  const {videoLink, posterImage} = film;
+  const { videoLink, posterImage } = film;
 
-  return(
+  return (
     <div className="player">
       <video src={videoLink} className="player__video" poster={posterImage}></video>
 
@@ -18,7 +18,7 @@ function PlayerScreen({film}:PlayerScreenProps): JSX.Element {
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style={{left: '30%'}}>Toggler</div>
+            <div className="player__toggler" style={{ left: '30%' }}>Toggler</div>
           </div>
           <div className="player__time-value">1:30:29</div>
         </div>

@@ -1,13 +1,13 @@
-import {Film} from '../../types/film';
-import {Link} from 'react-router-dom';
+import { Film } from '../../types/film';
+import { Link } from 'react-router-dom';
 
 type SingleCardScreenProps = {
   film: Film;
 }
 
-function SingleCard({film} : SingleCardScreenProps): JSX.Element {
-  const {name,previewImage,id} = film;
-  return(
+function SingleCard({ film }: SingleCardScreenProps): JSX.Element {
+  const { name, previewImage, id } = film;
+  return (
     <>
       <div className="small-film-card__image">
         <img src={previewImage} alt={name} width="280" height="175" />

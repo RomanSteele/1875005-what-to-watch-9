@@ -1,6 +1,6 @@
 
 function Footer(): JSX.Element {
-  return(
+  return (
     <footer className="page-footer">
       <div className="logo">
         <a className="logo__link logo__link--light">
