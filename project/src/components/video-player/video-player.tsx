@@ -16,19 +16,18 @@ function VideoPlayer({ autoPlay, film }: VideoPlayerProps): JSX.Element {
 
 
   useEffect(() => {
-    if (videoRef.current === null) {
+    const video = videoRef.current;
+    if (video === null) {
       return;
     }
 
     if (isPlaying) {
-      videoRef.current.volume = 0;
-      videoRef.current.play();
+      video.volume = 0;
+      video.play();
       return;
     }
 
-    videoRef.current.pause();
-    videoRef.current.currentTime = 0;
-    videoRef.current.load();
+    video.load();
   }, [isPlaying, posterImage]);
 
   return (
