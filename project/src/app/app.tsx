@@ -9,12 +9,14 @@ import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../components/private-route/private-route';
 import FilmScreen from '../pages/film-screen/film-screen';
 import { Film } from '../types/film';
+import { Review } from '../types/reviews';
 
 type AppScreenProps = {
   films: Film[];
+  reviews: Review[];
 }
 
-function App({ films }: AppScreenProps): JSX.Element {
+function App({ films, reviews }: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -28,7 +30,7 @@ function App({ films }: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmScreen film={films[0]}/>}
+          element={<FilmScreen film={films[0]} reviews={reviews}/>}
         />
         <Route
           path={AppRoute.MyList}
