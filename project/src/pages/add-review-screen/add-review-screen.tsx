@@ -3,16 +3,23 @@ import { Film } from '../../types/film';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
+import { useParams } from 'react-router-dom';
 
 
 type AddReviewScreenProps = {
-  film: Film;
+  films: Film[];
 };
 
-function ReviewScreen({ film }: AddReviewScreenProps): JSX.Element {
+function ReviewScreen({ films }: AddReviewScreenProps): JSX.Element {
+
+  const { id } = useParams() as {
+    id: string;
+  };
+  const film = films[parseInt(id, 10)];
+
   const { name, previewImage } = film;
   return (
-    <section className="film-card film-card--full">
+    <section className="film-card film-card--full" >
       <div className="film-card__header">
         <div className="film-card__bg">
           <img src={previewImage} alt={name} />

@@ -17,7 +17,6 @@ type AppScreenProps = {
 }
 
 function App({ films, reviews }: AppScreenProps): JSX.Element {
-  const filmSource = films[4];
   return (
     <BrowserRouter>
       <Routes>
@@ -31,7 +30,7 @@ function App({ films, reviews }: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmScreen film={filmSource} reviews={reviews} films={films}/>}
+          element={<FilmScreen reviews={reviews} films={films}/>}
         />
         <Route
           path={AppRoute.MyList}
@@ -45,11 +44,11 @@ function App({ films, reviews }: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerScreen film={filmSource} />}
+          element={<PlayerScreen films={films} />}
         />
         <Route
           path={AppRoute.Review}
-          element={<AddReviewScreen film={filmSource} />}
+          element={<AddReviewScreen films={films} />}
         />
         <Route
           path="*"

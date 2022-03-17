@@ -8,13 +8,13 @@ type MyFilmsListProps = {
 
 function MyFilmsList({ films }: MyFilmsListProps) {
   const [selectedFilm, setSelectedFilm] = useState<null | number>(null);
-  const handleMouseOver = (id: number) => {
+  const handleMouseEnter = (id: number) => {
     setSelectedFilm(id);
   };
   return (
     <div className="catalog__films-list" >
       {films.map((item) => (
-        <article className="small-film-card catalog__films-card"  key={item.id} onMouseEnter={() => {handleMouseOver(item.id);}}>
+        <article className="small-film-card catalog__films-card"  key={item.id} onMouseEnter={() => {handleMouseEnter(item.id);}}>
           <SingleFilmCard
             film={item}
           />

@@ -7,15 +7,22 @@ import UserBlock from '../../components/user-block/user-block';
 import { Review } from '../../types/reviews';
 import Tabs from '../../components/tabs/tabs';
 import SingleFilmCard from '../../components/single-card/single-card';
+import { useParams } from 'react-router-dom';
 
 type FilmScreenProps = {
-  film: Film;
   reviews: Review[];
   films: Film[];
 };
 
-function FilmScreen({ film, reviews, films }: FilmScreenProps): JSX.Element {
-  const { name, posterImage, genre, released, id } = film;
+
+function FilmScreen({ reviews, films }: FilmScreenProps): JSX.Element {
+
+  const { id } = useParams() as {
+    id: string;
+  };
+  const film = films[parseInt(id, 10)];
+
+  const { name, posterImage, genre, released } = film;
   return (
     <>
       <section className="film-card film-card--full">
@@ -74,7 +81,7 @@ function FilmScreen({ film, reviews, films }: FilmScreenProps): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
             {films.map((item) => (
-              film.genre === item.genre ? <SingleFilmCard film={item} key={item.id} /> : ''
+              film.genre === item.genre && <SingleFilmCard film={item} key={item.id} />
             ))}
           </div>
         </section>

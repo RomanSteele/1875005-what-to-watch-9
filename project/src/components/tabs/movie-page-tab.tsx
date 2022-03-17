@@ -4,7 +4,7 @@ type MoviePageTabProps = {
     film: Film,
 }
 
-function MovieTab({ film }: MoviePageTabProps): JSX.Element {
+function MoviePageTab({ film }: MoviePageTabProps): JSX.Element {
   const { rating, scoresCount, description, director, starring } = film;
   return (
     <>
@@ -26,4 +26,4 @@ function MovieTab({ film }: MoviePageTabProps): JSX.Element {
   );
 }
 
-export default MovieTab;
+export default MoviePageTab;
