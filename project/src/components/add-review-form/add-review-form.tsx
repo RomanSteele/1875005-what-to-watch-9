@@ -6,7 +6,7 @@ import { useContext } from 'react';
 
 function AddReviewForm( ): JSX.Element {
   const [commentData, setCommentData] = useState('');
-  const commentAddHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleCommentAdd = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const enteredComment = event.target.value;
     setCommentData(enteredComment);
   };
@@ -21,7 +21,7 @@ function AddReviewForm( ): JSX.Element {
       </div>
 
       <div className="add-review__text">
-        <textarea onChange={commentAddHandler} value={commentData} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+        <textarea onChange={handleCommentAdd} value={commentData} className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post</button>
         </div>

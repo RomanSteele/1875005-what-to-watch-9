@@ -1,10 +1,16 @@
 import { Film } from '../../types/film';
+import { useParams } from 'react-router-dom';
 
 type PlayerScreenProps = {
-  film: Film,
+  films: Film[],
 }
 
-function PlayerScreen({ film }: PlayerScreenProps): JSX.Element {
+function PlayerScreen({ films }: PlayerScreenProps): JSX.Element {
+
+  const { id } = useParams() as {
+    id: string;
+  };
+  const film = films[parseInt(id, 10)];
 
   const { videoLink, posterImage } = film;
 

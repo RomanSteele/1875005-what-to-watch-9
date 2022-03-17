@@ -9,12 +9,14 @@ import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../components/private-route/private-route';
 import FilmScreen from '../pages/film-screen/film-screen';
 import { Film } from '../types/film';
+import { Review } from '../types/reviews';
 
 type AppScreenProps = {
   films: Film[];
+  reviews: Review[];
 }
 
-function App({ films }: AppScreenProps): JSX.Element {
+function App({ films, reviews }: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -28,7 +30,7 @@ function App({ films }: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmScreen film={films[0]}/>}
+          element={<FilmScreen reviews={reviews} films={films}/>}
         />
         <Route
           path={AppRoute.MyList}
@@ -42,11 +44,11 @@ function App({ films }: AppScreenProps): JSX.Element {
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerScreen film={films[0]} />}
+          element={<PlayerScreen films={films} />}
         />
         <Route
           path={AppRoute.Review}
-          element={<AddReviewScreen film={films[0]} />}
+          element={<AddReviewScreen films={films} />}
         />
         <Route
           path="*"
