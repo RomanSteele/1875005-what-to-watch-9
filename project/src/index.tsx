@@ -6,12 +6,17 @@ import { stars } from './mocks/stars';
 import { reviews } from './mocks/reviews';
 import StarContext from './context';
 
+import { Provider } from 'react-redux';
+import { store } from './store/index';
+
 function Main() {
   return (
     <React.StrictMode>
-      <StarContext.Provider value={ stars }>
-        <App  films={films} reviews={reviews}/>
-      </StarContext.Provider>
+      <Provider store={ store }>
+        <StarContext.Provider value={ stars }>
+          <App  films={films} reviews={reviews}/>
+        </StarContext.Provider>
+      </Provider>
     </React.StrictMode>);
 
 }
