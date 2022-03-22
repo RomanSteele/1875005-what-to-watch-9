@@ -15,9 +15,15 @@ function ReviewScreen({ films }: AddReviewScreenProps): JSX.Element {
   const { id } = useParams() as {
     id: string;
   };
-  const film = films[parseInt(id, 10)];
+  const numericId = parseInt(id, 10);
 
-  const { name, previewImage } = film;
+  const  film = films.find((item) => item.id === numericId);
+
+  const { name, previewImage } = film as {
+  name: Film['name'],
+  previewImage: Film['previewImage']
+};
+
   return (
     <section className="film-card film-card--full" >
       <div className="film-card__header">
