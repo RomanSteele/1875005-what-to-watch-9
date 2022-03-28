@@ -1,12 +1,8 @@
 import Footer from '../../components/footer/footer';
 import { Film } from '../../types/film';
-import FilmsList from '../../components/films-list/films-list';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import CatalogGenresList from '../../components/catalog-genres-list/catalog-genres-list';
-import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../hooks';
-
+import  MainPageContent  from '../../components/main-page-content/main-page-content';
 
 type MainScreenProps = {
   films: Film[];
@@ -14,15 +10,6 @@ type MainScreenProps = {
 
 
 function MainScreen({ films }: MainScreenProps): JSX.Element {
-  const [genres, setGenres] = useState<string[]>([]);
-  const currentGenre = useAppSelector((state) => state.genre);
-
-  useEffect(() => {
-
-    setGenres(['All genres', ...new Set(films.map(({ genre }) => genre))]);
-
-  }, [films]);
-
 
   return (
     <>
@@ -71,21 +58,7 @@ function MainScreen({ films }: MainScreenProps): JSX.Element {
       </section>
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <ul className="catalog__genres-list">
-            <CatalogGenresList genres={genres}/>
-          </ul>
-
-          <div className="catalog__films-list">
-            <FilmsList films={films.filter(({ genre }) => currentGenre === 'All genres' || currentGenre === genre)} />
-          </div>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
-        </section>
+        <MainPageContent films={films}/>
         <Footer />
       </div>
     </>
