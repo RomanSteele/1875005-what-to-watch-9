@@ -4,6 +4,7 @@ import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import  MainPageContent  from '../../components/main-page-content/main-page-content';
 
+
 type MainScreenProps = {
   films: Film[];
 }

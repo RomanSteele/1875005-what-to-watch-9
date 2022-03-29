@@ -12,3 +12,7 @@ export enum AuthorizationStatus {
   NotAuthorized = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum APIRoute {
+  Films = '/films',
+}

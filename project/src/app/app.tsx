@@ -8,15 +8,24 @@ import AddReviewScreen from '../pages/add-review-screen/add-review-screen';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../components/private-route/private-route';
 import FilmScreen from '../pages/film-screen/film-screen';
-import { Film } from '../types/film';
 import { Review } from '../types/reviews';
 
+import { useAppSelector } from '../hooks/index';
+import LoadingScreen from '../components/loading-screen/loading-screen';
+
 type AppScreenProps = {
-  films: Film[];
+  //films: Film[];
   reviews: Review[];
 }
 
-function App({ films, reviews }: AppScreenProps): JSX.Element {
+function App({  reviews }: AppScreenProps): JSX.Element {
+  const { isDataLoaded, films } = useAppSelector((state) => state);
+  if (!isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
