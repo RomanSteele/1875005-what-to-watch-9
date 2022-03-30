@@ -23,14 +23,6 @@ function MainPageContent({ films }: MainPageContentProps): JSX.Element {
   const [step, setStep] = useState(FILMS_PER_STEP);
 
 
-  const changeGenre = () => {
-    setStep(FILMS_PER_STEP);
-  };
-
-  useEffect(() => {
-    changeGenre();
-  }, [currentGenre]);
-
   useEffect(() => {
     setStep(FILMS_PER_STEP);
   }, [currentGenre]);

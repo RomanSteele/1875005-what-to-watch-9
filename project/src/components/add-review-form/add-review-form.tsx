@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import StarContext from '../../context';
 import  RatingStars  from '../../components/rating-stars/rating-stars';
-import { useContext } from 'react';
 
 
 function AddReviewForm( ): JSX.Element {
@@ -11,13 +9,12 @@ function AddReviewForm( ): JSX.Element {
     setCommentData(enteredComment);
   };
 
-  const stars = useContext(StarContext);
 
   return (
 
     <form action="#" className="add-review__form">
       <div className="rating">
-        <RatingStars stars={stars}/>
+        <RatingStars />
       </div>
 
       <div className="add-review__text">

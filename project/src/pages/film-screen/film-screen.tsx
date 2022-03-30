@@ -23,6 +23,7 @@ function FilmScreen({ reviews, films }: FilmScreenProps): JSX.Element {
   const film = films[parseInt(id, 10)];
 
   const { name, posterImage, genre, released } = film;
+
   return (
     <>
       <section className="film-card film-card--full">

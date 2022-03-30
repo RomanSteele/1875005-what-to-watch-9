@@ -31,6 +31,7 @@ function VideoPlayer({ autoPlay, film }: VideoPlayerProps): JSX.Element {
     videoRef.current.load();
   }, [isPlaying, posterImage]);
 
+
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={() => setIsPlaying(!isPlaying)} onMouseLeave={() => setIsPlaying(!isPlaying)}>
       <div className="small-film-card__image">
