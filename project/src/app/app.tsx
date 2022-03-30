@@ -14,7 +14,6 @@ import { useAppSelector } from '../hooks/index';
 import LoadingScreen from '../components/loading-screen/loading-screen';
 
 type AppScreenProps = {
-  //films: Film[];
   reviews: Review[];
 }
 

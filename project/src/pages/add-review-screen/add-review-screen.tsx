@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 import { Film } from '../../types/film';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 import Logo from '../../components/logo/logo';
@@ -38,7 +38,7 @@ function ReviewScreen({ films }: AddReviewScreenProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{name}</a>
+                <Link to={`/films/${id}`} className="breadcrumbs__link">{name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -54,7 +54,7 @@ function ReviewScreen({ films }: AddReviewScreenProps): JSX.Element {
       </div>
 
       <div className="add-review">
-        <AddReviewForm />
+        <AddReviewForm key={id}/>
       </div>
 
     </section>);

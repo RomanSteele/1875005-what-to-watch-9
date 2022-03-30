@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api } from '../store';
-import { store } from '../store';
+import { api, store } from '../store';
 import { Film } from '../types/film';
 import { loadFilms } from './action';
 import { APIRoute } from '../const';

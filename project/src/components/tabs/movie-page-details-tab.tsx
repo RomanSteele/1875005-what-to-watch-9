@@ -1,4 +1,5 @@
 import { Film } from '../../types/film';
+import { timeConvert } from '../../helpers';
 
 type MoviePageDetailsTabProps = {
     film: Film,
@@ -6,6 +7,7 @@ type MoviePageDetailsTabProps = {
 
 function MoviePageDetailsTab({ film }: MoviePageDetailsTabProps): JSX.Element {
   const { director, starring, runTime, genre, released } = film;
+
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">
@@ -16,7 +18,13 @@ function MoviePageDetailsTab({ film }: MoviePageDetailsTabProps): JSX.Element {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {starring}
+            {starring.map((item: string, index: number) => {
+              if (index === film.starring.length - 1) {
+                return (<span key={item}>{item}</span>);
+              }
+              return (<span key={item}>{item},<br/></span>);
+            },
+            )}
           </span>
         </p>
       </div>
@@ -24,7 +32,7 @@ function MoviePageDetailsTab({ film }: MoviePageDetailsTabProps): JSX.Element {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{runTime}</span>
+          <span className="film-card__details-value">{timeConvert(runTime)}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>

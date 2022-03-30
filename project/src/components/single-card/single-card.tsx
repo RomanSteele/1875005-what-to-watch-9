@@ -9,7 +9,7 @@ type SingleCardScreenProps = {
 
 function SingleCard({ film }: SingleCardScreenProps): JSX.Element {
 
-
+  console.log(film.id);
   return (
     <VideoPlayer autoPlay={false} film={film}/>
   );

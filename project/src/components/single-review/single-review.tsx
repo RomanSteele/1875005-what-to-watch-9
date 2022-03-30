@@ -9,7 +9,7 @@ type SingleReviewProps = {
 
 function SingleReview({ reviews }: SingleReviewProps): JSX.Element {
   const { comment, date,  rating, user } = reviews;
-
+  console.log(rating);
   return (
     <div className="review">
       <blockquote className="review__quote">
@@ -21,7 +21,7 @@ function SingleReview({ reviews }: SingleReviewProps): JSX.Element {
         </footer>
       </blockquote>
 
-      <div className="review__rating">{rating}</div>
+      <div className="review__rating">{rating.toString().replace('.', ',')}</div>
     </div>
   );
 }
