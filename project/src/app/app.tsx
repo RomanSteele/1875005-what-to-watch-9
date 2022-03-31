@@ -1,5 +1,5 @@
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../const';
+import { Route, Routes } from 'react-router-dom';
+import { AppRoute } from '../const';
 import MainScreen from '../pages/main-screen/main-screen';
 import LoginScreen from '../pages/login-screen/login-screen';
 import MyListScreen from '../pages/my-list-screen/my-list-screen';
@@ -9,24 +9,27 @@ import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../components/private-route/private-route';
 import FilmScreen from '../pages/film-screen/film-screen';
 import { Review } from '../types/reviews';
-
+import { isCheckedAuth } from '../helpers';
 import { useAppSelector } from '../hooks/index';
 import LoadingScreen from '../components/loading-screen/loading-screen';
+import HistoryRouter from '../components/history-route/history-route';
+import browserHistory from '../browser-history';
 
 type AppScreenProps = {
   reviews: Review[];
 }
 
 function App({  reviews }: AppScreenProps): JSX.Element {
-  const { isDataLoaded, films } = useAppSelector((state) => state);
-  if (!isDataLoaded) {
+  const { authorizationStatus, isDataLoaded, films } = useAppSelector((state) => state);
+
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return (
       <LoadingScreen />
     );
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -44,7 +47,7 @@ function App({  reviews }: AppScreenProps): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Authorized}
+              authorizationStatus={authorizationStatus}
             >
               <MyListScreen films={films}/>
             </PrivateRoute>
@@ -63,7 +66,7 @@ function App({  reviews }: AppScreenProps): JSX.Element {
           element={<NotFoundScreen />}
         />
       </Routes>
-    </BrowserRouter>);
+    </HistoryRouter>);
 }
 
 export default App;

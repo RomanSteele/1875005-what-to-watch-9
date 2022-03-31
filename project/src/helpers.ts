@@ -1,3 +1,5 @@
+import { AuthorizationStatus } from './const';
+
 const minutesInHour = 60;
 
 export const convertTime = (value: number) => {
@@ -8,3 +10,5 @@ export const convertTime = (value: number) => {
   return `${roundedhours}h ${roundedminutes}m`;
 };
 
+export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
+  authorizationStatus === AuthorizationStatus.Unknown;
