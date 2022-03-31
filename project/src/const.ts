@@ -19,7 +19,7 @@ export enum APIRoute {
   Films = '/films',
 }
 
-export const stars: Stars[] = [
+export const STARS: Stars[] = [
   { 'id': 10 },
   { 'id': 9 },
   { 'id': 8 },

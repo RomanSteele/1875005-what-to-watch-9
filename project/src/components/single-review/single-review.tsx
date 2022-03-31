@@ -9,7 +9,7 @@ type SingleReviewProps = {
 
 function SingleReview({ reviews }: SingleReviewProps): JSX.Element {
   const { comment, date,  rating, user } = reviews;
-  console.log(rating);
+
   return (
     <div className="review">
       <blockquote className="review__quote">

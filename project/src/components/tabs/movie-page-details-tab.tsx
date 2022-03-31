@@ -1,5 +1,5 @@
 import { Film } from '../../types/film';
-import { timeConvert } from '../../helpers';
+import { convertTime } from '../../helpers';
 
 type MoviePageDetailsTabProps = {
     film: Film,
@@ -32,7 +32,7 @@ function MoviePageDetailsTab({ film }: MoviePageDetailsTabProps): JSX.Element {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{timeConvert(runTime)}</span>
+          <span className="film-card__details-value">{convertTime(runTime)}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>

@@ -7,7 +7,7 @@ type FilmsListProps = {
 };
 
 function FilmsList({ films }: FilmsListProps) {
-  console.log(films);
+
   return (
     <>
       {films.map((item) => (
