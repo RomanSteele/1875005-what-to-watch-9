@@ -17,10 +17,10 @@ type FilmScreenProps = {
 
 function FilmScreen({ reviews, films }: FilmScreenProps): JSX.Element {
 
-  const { id } = useParams() as {
-    id: string;
-  };
-  const film = films[parseInt(id, 10)];
+  const params = useParams();
+  const filmId = Number(params.id);
+
+  const film = films.find((item) => item.id === filmId) as Film;
 
   const { name, posterImage, genre, released } = film;
 
@@ -61,7 +61,7 @@ function FilmScreen({ reviews, films }: FilmScreenProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link className="btn film-card__button"to={`/films/${id}/review`}>Add review</Link>
+                <Link className="btn film-card__button"to={`/films/${filmId}/review`}>Add review</Link>
               </div>
             </div>
           </div>
