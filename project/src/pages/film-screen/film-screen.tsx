@@ -1,28 +1,46 @@
 
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/footer';
 import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import { Review } from '../../types/reviews';
 import Tabs from '../../components/tabs/tabs';
 import SingleFilmCard from '../../components/single-card/single-card';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/index';
+import { AuthorizationStatus } from '../../const';
+import { fetchCommentsAction, fetchSimilarFilmsAction  } from '../../store/api-actions';
+import { store } from '../../store';
+import { AppRoute } from '../../const';
+//import LoadingScreen from '../../components/loading-screen/loading-screen';
 
 type FilmScreenProps = {
-  reviews: Review[];
   films: Film[];
 };
 
-
-function FilmScreen({ reviews, films }: FilmScreenProps): JSX.Element {
-
+function FilmScreen({  films }: FilmScreenProps): JSX.Element {
+  const navigate = useNavigate();
   const params = useParams();
   const filmId = Number(params.id);
-
   const film = films.find((item) => item.id === filmId) as Film;
 
   const { name, posterImage, genre, released } = film;
+  const { authorizationStatus, comments, similarFilms } = useAppSelector((state)=> state);
+
+
+  useEffect(() => {
+    if (!film) {
+      navigate(AppRoute.NotFound);
+      return;
+    }
+    store.dispatch(fetchCommentsAction(film.id));
+    store.dispatch(fetchSimilarFilmsAction(film.id));
+  }, [film, navigate]);
+
+  if (!film) {
+    navigate(AppRoute.NotFound);
+  }
 
   return (
     <>
@@ -61,7 +79,7 @@ function FilmScreen({ reviews, films }: FilmScreenProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link className="btn film-card__button"to={`/films/${filmId}/review`}>Add review</Link>
+                {authorizationStatus === AuthorizationStatus.Authorized ? <Link className="btn film-card__button"to={`/films/${filmId}/review`}>Add review</Link>: ''}
               </div>
             </div>
           </div>
@@ -73,7 +91,7 @@ function FilmScreen({ reviews, films }: FilmScreenProps): JSX.Element {
               <img src={posterImage} alt={name} width="218" height="327" />
             </div>
 
-            <Tabs film={film} reviews={reviews}/>
+            <Tabs film={film} reviews={comments}/>
           </div>
         </div>
       </section>
@@ -81,8 +99,8 @@ function FilmScreen({ reviews, films }: FilmScreenProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            {films.map((item) => (
-              film.genre === item.genre && <SingleFilmCard film={item} key={item.id} />
+            {similarFilms.slice(0, 4).map((item)=>(
+              <SingleFilmCard film={item} key={item.id} />
             ))}
           </div>
         </section>

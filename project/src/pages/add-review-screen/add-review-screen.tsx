@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Film } from '../../types/film';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import { useParams } from 'react-router-dom';
-
+import { AppRoute } from '../../const';
 
 type AddReviewScreenProps = {
   films: Film[];
@@ -38,10 +37,10 @@ function ReviewScreen({ films }: AddReviewScreenProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${id}`} className="breadcrumbs__link">{name}</Link>
+                <Link to={`${AppRoute.FilmPage}/${id}`} className="breadcrumbs__link">{name}</Link>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <Link to={`${AppRoute.FilmPage}/${id}/${AppRoute.Review}`} className="breadcrumbs__link">Add review</Link>
               </li>
             </ul>
           </nav>

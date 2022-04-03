@@ -16,12 +16,10 @@ function MoviePageReviewsTab({ reviews }: MoviePageReviewsTabProps): JSX.Element
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {sortedReviewsToRender.splice(0, reviews.length/2)}
-
+        {sortedReviewsToRender.splice(0, Math.ceil(reviews.length / 2))}
       </div>
       <div className="film-card__reviews-col">
-        {sortedReviewsToRender.splice(reviews.length/2)}
-
+        {sortedReviewsToRender.splice(Math.floor(reviews.length / 2)-1)}
       </div>
     </div>
   );
