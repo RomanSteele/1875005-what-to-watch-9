@@ -8,7 +8,7 @@ function UserBlockSignOut(): JSX.Element {
   const navigate = useNavigate();
 
   const { userLoginData } = useAppSelector((state)=> state);
-  console.log(userLoginData);
+
   return (
     <div className="user-block">
       <li className="user-block__item">

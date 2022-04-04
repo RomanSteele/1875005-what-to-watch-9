@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { updateGenre, loadFilms, requireAuthorization, loadComments, loadPromoFilm, loadSimilarFilms, userData } from './action';
+import { updateGenre, loadFilms, requireAuthorization, loadComments, loadPromoFilm, loadSimilarFilms, loadUserData } from './action';
 import { Film } from '../types/film';
 import { AuthorizationStatus } from '../const';
 import { FilmReview } from '../types/film-review';
@@ -94,7 +94,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.similarFilms = action.payload;
       state.isDataLoaded = true;
     })
-    .addCase(userData, (state, action) => {
+    .addCase(loadUserData, (state, action) => {
       state.userLoginData = action.payload;
     });
 });

@@ -17,13 +17,13 @@ function PrivateRoute(props: PrivateRouteProps): JSX.Element {
         ? children
         : <Navigate to={AppRoute.Login} />
     );
-  } else {
-    return (
-      authorizationStatus === AuthorizationStatus.Authorized
-        ? <Navigate to={AppRoute.Main} />
-        : children
-    );
   }
+  return (
+    authorizationStatus === AuthorizationStatus.Authorized
+      ? <Navigate to={AppRoute.Main} />
+      : children
+  );
 }
+
 
 export default PrivateRoute;

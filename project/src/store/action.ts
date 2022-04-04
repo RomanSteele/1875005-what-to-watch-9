@@ -11,7 +11,7 @@ export const loadFilms = createAction<Film[]>('data/loadFilms');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
-export const redirectToRoute = createAction<AppRoute>('game/redirectToRoute');
+export const redirectToRoute = createAction<AppRoute>('data/redirectToRoute');
 
 export const loadComments = createAction<FilmReview[]>('data/loadComments');
 
@@ -21,4 +21,4 @@ export const addComment = createAction<CommentPost>('data/addComment');
 
 export const loadSimilarFilms = createAction<Film[]>('data/loadSimilarFilms');
 
-export const userData = createAction<UserLoginData>('user/userData');
+export const loadUserData = createAction<UserLoginData>('user/loadUserData');

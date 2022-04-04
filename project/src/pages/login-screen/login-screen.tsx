@@ -1,12 +1,10 @@
-
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { useRef, FormEvent } from 'react';
-//import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/index';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
-//import { AppRoute } from '../../const';
+
 
 function LoginScreen(): JSX.Element {
 
@@ -16,14 +14,14 @@ function LoginScreen(): JSX.Element {
   const dispatch = useAppDispatch();
 
 
-  const onSubmit = (authData: AuthData) => {
+  const sendOnSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (loginRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
+      sendOnSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value,
       });

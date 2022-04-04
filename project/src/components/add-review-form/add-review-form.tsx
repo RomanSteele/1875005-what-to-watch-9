@@ -2,14 +2,14 @@ import React, { FormEvent, useState } from 'react';
 import { postComment } from '../../store/api-actions';
 import { CommentPost } from '../../types/comment-post';
 import { store } from '../../store';
-import { STARS } from '../../const';
+import { STARS, AppRoute } from '../../const';
 import { useParams, useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const';
 
 
-const MIN_COMMENT_LENGTH = 50;
-const MAX_COMMENT_LENGTH = 400;
-
+const enum CommentLength {
+  Min = 50,
+  Max = 400,
+}
 
 function AddReviewForm(): JSX.Element {
 
@@ -27,7 +27,7 @@ function AddReviewForm(): JSX.Element {
     setRatingData(id);
   };
 
-  const onSubmit = ({ id, comment, rating }: CommentPost) => {
+  const sendOnSubmit = ({ id, comment, rating }: CommentPost) => {
     store.dispatch(postComment({ id, comment, rating }));
   };
 
@@ -36,8 +36,8 @@ function AddReviewForm(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if ( commentData !== '' || commentData.length > MIN_COMMENT_LENGTH || commentData.length < MAX_COMMENT_LENGTH) {
-      onSubmit(
+    if ( commentData !== '' || commentData.length > CommentLength.Min || commentData.length < CommentLength.Max) {
+      sendOnSubmit(
         {
           id: id,
           rating: ratingData,
@@ -68,7 +68,6 @@ function AddReviewForm(): JSX.Element {
             <button className="add-review__btn" type="submit" disabled>Post</button> :
             <button className="add-review__btn" type="submit">Post</button>}
         </div>
-        {commentData}
       </div>
     </form>
   );

@@ -22,7 +22,7 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Comments = '/comments',
-  CommentPost = '/comments',
+  CommentPost = '/comments/',
   Promo = '/promo'
 }
 

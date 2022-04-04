@@ -4,7 +4,7 @@ export type CommentPost = {
   rating: number,
   };
 
-export type userCommentData = {
+export type UserCommentData = {
     review: string,
     rating: number,
     token: string,

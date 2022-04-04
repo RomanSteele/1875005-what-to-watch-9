@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { ErrorType } from '../types/error';
 import { HttpCode } from '../const';
 
-export const errorHandle = (error: ErrorType): void => {
+export const setErrorHandle = (error: ErrorType): void => {
   if (!request.isAxiosError(error)) {
     throw error;
   }

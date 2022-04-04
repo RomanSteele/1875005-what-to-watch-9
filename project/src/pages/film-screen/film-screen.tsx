@@ -1,19 +1,20 @@
-
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/footer';
 import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import Tabs from '../../components/tabs/tabs';
 import SingleFilmCard from '../../components/single-card/single-card';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/index';
-import { AuthorizationStatus } from '../../const';
+import { AuthorizationStatus, AppRoute } from '../../const';
 import { fetchCommentsAction, fetchSimilarFilmsAction  } from '../../store/api-actions';
 import { store } from '../../store';
-import { AppRoute } from '../../const';
-//import LoadingScreen from '../../components/loading-screen/loading-screen';
+
+const enum similarFilmsSlice {
+  Start = 0,
+  End = 4,
+}
 
 type FilmScreenProps = {
   films: Film[];
@@ -99,7 +100,7 @@ function FilmScreen({  films }: FilmScreenProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            {similarFilms.slice(0, 4).map((item)=>(
+            {similarFilms.slice(similarFilmsSlice.Start, similarFilmsSlice.End).map((item)=>(
               <SingleFilmCard film={item} key={item.id} />
             ))}
           </div>
