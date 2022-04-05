@@ -1,13 +1,10 @@
-
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-
 import { useRef, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/index';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
-import { AppRoute } from '../../const';
+
 
 function LoginScreen(): JSX.Element {
 
@@ -15,17 +12,16 @@ function LoginScreen(): JSX.Element {
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
-  const onSubmit = (authData: AuthData) => {
+
+  const sendOnSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
     if (loginRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
+      sendOnSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value,
       });
@@ -53,7 +49,7 @@ function LoginScreen(): JSX.Element {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button onClick={() => navigate(AppRoute.Main)} className="sign-in__btn" type="submit">Sign in</button>
+            <button  className="sign-in__btn" type="submit">Sign in</button>
           </div>
         </form>
       </div>

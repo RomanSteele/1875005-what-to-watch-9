@@ -5,8 +5,10 @@ export enum AppRoute {
   Login = '/login',
   MyList = '/mylist',
   Film = '/films/:id',
+  FilmPage = '/films',
   Review = '/films/:id/review',
   Player = '/player/:id',
+  NotFound = '/404',
 }
 
 export enum AuthorizationStatus {
@@ -19,6 +21,9 @@ export enum APIRoute {
   Films = '/films',
   Login = '/login',
   Logout = '/logout',
+  Comments = '/comments',
+  CommentPost = '/comments/',
+  Promo = '/promo'
 }
 
 export const STARS: Stars[] = [
@@ -34,8 +39,8 @@ export const STARS: Stars[] = [
   { 'id': 1 },
 ];
 
-export enum HTTP_CODE {
-  BAD_REQUEST = 400,
-  UNAUTHORIZED = 401,
-  NOT_FOUND = 404,
+export enum HttpCode {
+  BadRequest = 400,
+  Unauthorized = 401,
+  NotFound = 404,
 }

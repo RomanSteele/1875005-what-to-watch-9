@@ -2,21 +2,23 @@ import Footer from '../../components/footer/footer';
 import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import  MainPageContent  from '../../components/main-page-content/main-page-content';
+import MainPageContent  from '../../components/main-page-content/main-page-content';
 
 
 type MainScreenProps = {
   films: Film[];
+  promoFilm: Film;
 }
 
 
-function MainScreen({ films }: MainScreenProps): JSX.Element {
+function MainScreen({ films, promoFilm }: MainScreenProps): JSX.Element {
+  const { posterImage, name, genre, released } = promoFilm;
 
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={films[0].posterImage} alt={films[0].name} />
+          <img src={posterImage} alt={name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -29,14 +31,14 @@ function MainScreen({ films }: MainScreenProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={films[0].posterImage} alt={films[0].name} width="218" height="327" />
+              <img src={posterImage} alt={name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{films[0].name}</h2>
+              <h2 className="film-card__title">{name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{films[0].genre}</span>
-                <span className="film-card__year">{films[0].released}</span>
+                <span className="film-card__genre">{genre}</span>
+                <span className="film-card__year">{released}</span>
               </p>
 
               <div className="film-card__buttons">
