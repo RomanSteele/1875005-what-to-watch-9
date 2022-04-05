@@ -11,6 +11,7 @@ import { AuthorizationStatus, AppRoute } from '../../const';
 import { fetchCommentsAction, fetchSimilarFilmsAction  } from '../../store/api-actions';
 import { store } from '../../store';
 
+
 const enum similarFilmsSlice {
   Start = 0,
   End = 4,
@@ -25,6 +26,8 @@ function FilmScreen({  films }: FilmScreenProps): JSX.Element {
   const params = useParams();
   const filmId = Number(params.id);
   const film = films.find((item) => item.id === filmId) as Film;
+  console.log(film);
+
 
   const { name, posterImage, genre, released } = film;
   const { authorizationStatus, comments, similarFilms } = useAppSelector((state)=> state);
@@ -38,10 +41,6 @@ function FilmScreen({  films }: FilmScreenProps): JSX.Element {
     store.dispatch(fetchCommentsAction(film.id));
     store.dispatch(fetchSimilarFilmsAction(film.id));
   }, [film, navigate]);
-
-  if (!film) {
-    navigate(AppRoute.NotFound);
-  }
 
   return (
     <>

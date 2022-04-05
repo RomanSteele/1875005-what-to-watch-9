@@ -14,7 +14,7 @@ import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
 import { setErrorHandle } from '../services/error-handle';
 import { AuthData } from '../types/auth-data';
-import { UserData, UserLoginData } from '../types/user-data';
+import {  UserLoginData } from '../types/user-data';
 import { FilmReview } from '../types/film-review';
 import { CommentPost, UserCommentData } from '../types/comment-post';
 
@@ -46,8 +46,7 @@ export const postComment = createAsyncThunk(
   'film/postComment',
   async ({ id, comment, rating }: CommentPost) => {
     try {
-      const { data: { token } } = await api.post<UserCommentData>(`${APIRoute.CommentPost}${id}`, { comment, rating });
-      saveToken(token);
+      await api.post<UserCommentData>(`${APIRoute.CommentPost}${id}`, { comment, rating });
       store.dispatch(addComment({ id, comment, rating }));
     } catch (error) {
       setErrorHandle(error);
@@ -109,8 +108,9 @@ export const loginAction = createAsyncThunk(
   'user/login',
   async ({ login: email, password }: AuthData) => {
     try {
-      const { data: { token } } = await api.post<UserData>(APIRoute.Login, { email, password });
-      saveToken(token);
+      const { data } = await api.post<UserLoginData>(APIRoute.Login, { email, password });
+      saveToken(data.token);
+      store.dispatch(loadUserData(data));
       store.dispatch(requireAuthorization(AuthorizationStatus.Authorized));
       store.dispatch(redirectToRoute(AppRoute.Main));
     } catch (error) {
