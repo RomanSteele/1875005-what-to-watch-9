@@ -12,12 +12,14 @@ function PrivateRoute(props: PrivateRouteProps): JSX.Element {
   const { authorizationStatus, children } = props;
 
   if (children.type !== LoginScreen){
+
     return (
       authorizationStatus === AuthorizationStatus.Authorized
         ? children
         : <Navigate to={AppRoute.Login} />
     );
   }
+
   return (
     authorizationStatus === AuthorizationStatus.Authorized
       ? <Navigate to={AppRoute.Main} />

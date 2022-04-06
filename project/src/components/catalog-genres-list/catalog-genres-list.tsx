@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom';
-import { updateGenre } from '../../store/slices/action-data/action-data';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { updateGenre } from '../../store/slices/action-data/action-data';
+
 
 type CatalogGenresListProps = {
   genres: string[];
 };
 
 function CatalogGenresList({ genres }: CatalogGenresListProps): JSX.Element {
+
   const dispatch = useAppDispatch();
   const currentGenre = useAppSelector(({ ACTION }) => ACTION);
+
   return (
     <>
       {genres.map((item) => (

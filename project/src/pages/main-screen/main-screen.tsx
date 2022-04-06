@@ -1,9 +1,10 @@
-import Footer from '../../components/footer/footer';
 import { Film } from '../../types/film';
+import { useAppSelector } from '../../hooks/index';
 import Logo from '../../components/logo/logo';
+import Footer from '../../components/footer/footer';
 import UserBlock from '../../components/user-block/user-block';
 import MainPageContent  from '../../components/main-page-content/main-page-content';
-import { useAppSelector } from '../../hooks/index';
+
 
 type MainScreenProps = {
   films: Film[];

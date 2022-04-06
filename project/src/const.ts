@@ -45,7 +45,7 @@ export enum HttpCode {
   NotFound = 404,
 }
 
-export enum NameSpaceNew {
+export enum NameSpace {
   user = 'USER',
   data = 'DATA',
   action = 'ACTION',

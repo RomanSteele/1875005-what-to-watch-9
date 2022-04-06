@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpaceNew, AuthorizationStatus } from '../../../const';
 import { UserData } from '../../../types/state';
+import { NameSpace, AuthorizationStatus } from '../../../const';
+
 
 const initialState: UserData = {
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -14,7 +15,7 @@ const initialState: UserData = {
 };
 
 export const userData = createSlice ({
-  name: NameSpaceNew.user,
+  name: NameSpace.user,
   initialState,
   reducers: {
     requireAuthorization: (state, action) => {

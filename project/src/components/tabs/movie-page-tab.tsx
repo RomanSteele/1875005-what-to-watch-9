@@ -15,6 +15,7 @@ const RANK_TITLES = [
 const getRankTitle= (rating: number) => RANK_TITLES.find(({ rank }) => rank <= rating)?.title ?? '';
 
 function MoviePageTab({ film }: MoviePageTabProps): JSX.Element {
+
   const { rating, scoresCount, description, director, starring } = film;
 
   return (

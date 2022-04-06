@@ -1,14 +1,16 @@
-import Footer from '../../components/footer/footer';
 import { Film } from '../../types/film';
-import MyFilmsList from '../../components/my-films-list/my-films-list';
 import Logo from '../../components/logo/logo';
+import Footer from '../../components/footer/footer';
 import UserBlock from '../../components/user-block/user-block';
+import MyFilmsList from '../../components/my-films-list/my-films-list';
+
 
 type MyListScreenProps = {
   films: Film[];
 };
 
 function MyListScreen({ films }: MyListScreenProps): JSX.Element {
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

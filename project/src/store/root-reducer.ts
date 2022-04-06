@@ -1,12 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { NameSpaceNew } from '../const';
-import { data } from './slices/data/data';
+import { NameSpace } from '../const';
+import { data } from './slices/app-data/app-data';
 import { userData } from './slices/user-data/user-data';
 import { actionData } from './slices/action-data/action-data';
 
 
 export const rootReducer = combineReducers({
-  [NameSpaceNew.data]: data.reducer,
-  [NameSpaceNew.user]: userData.reducer,
-  [NameSpaceNew.action]: actionData.reducer,
+  [NameSpace.data]: data.reducer,
+  [NameSpace.user]: userData.reducer,
+  [NameSpace.action]: actionData.reducer,
 });

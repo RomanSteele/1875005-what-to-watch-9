@@ -1,21 +1,22 @@
 import { Route, Routes } from 'react-router-dom';
+import browserHistory from '../browser-history';
 import { AppRoute } from '../const';
+import { isCheckedAuth } from '../helpers';
+import { useAppSelector } from '../hooks/index';
 import MainScreen from '../pages/main-screen/main-screen';
 import LoginScreen from '../pages/login-screen/login-screen';
 import MyListScreen from '../pages/my-list-screen/my-list-screen';
 import PlayerScreen from '../pages/player-screen/player-screen';
 import AddReviewScreen from '../pages/add-review-screen/add-review-screen';
 import NotFoundScreen from '../pages/not-found-screen/not-found-screen';
-import PrivateRoute from '../components/private-route/private-route';
 import FilmScreen from '../pages/film-screen/film-screen';
-import { isCheckedAuth } from '../helpers';
-import { useAppSelector } from '../hooks/index';
+import PrivateRoute from '../components/private-route/private-route';
 import LoadingScreen from '../components/loading-screen/loading-screen';
 import HistoryRouter from '../components/history-route/history-route';
-import browserHistory from '../browser-history';
 
 
 function App(): JSX.Element {
+
   const { authorizationStatus } = useAppSelector(({ USER }) => USER);
   const { isDataLoaded, films } = useAppSelector(({ DATA }) => DATA);
 

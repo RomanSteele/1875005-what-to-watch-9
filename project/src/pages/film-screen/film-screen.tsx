@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import Footer from '../../components/footer/footer';
-import { Film } from '../../types/film';
-import Logo from '../../components/logo/logo';
-import UserBlock from '../../components/user-block/user-block';
-import Tabs from '../../components/tabs/tabs';
-import SingleFilmCard from '../../components/single-card/single-card';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/index';
-import { AuthorizationStatus, AppRoute } from '../../const';
-import { fetchCommentsAction, fetchSimilarFilmsAction  } from '../../store/api-actions';
 import { store } from '../../store';
+import { Film } from '../../types/film';
+import { fetchCommentsAction, fetchSimilarFilmsAction  } from '../../store/api-actions';
+import { AuthorizationStatus, AppRoute } from '../../const';
+import Footer from '../../components/footer/footer';
+import Logo from '../../components/logo/logo';
+import Tabs from '../../components/tabs/tabs';
+import UserBlock from '../../components/user-block/user-block';
+import SingleFilmCard from '../../components/single-card/single-card';
 
 
 const enum SimilarFilmsArraySlice {
@@ -22,6 +22,7 @@ type FilmScreenProps = {
 };
 
 function FilmScreen({  films }: FilmScreenProps): JSX.Element {
+
   const navigate = useNavigate();
   const params = useParams();
   const filmId = Number(params.id);

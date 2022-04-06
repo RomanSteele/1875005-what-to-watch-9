@@ -1,18 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from '../store';
 import { Film } from '../types/film';
-import { redirectToRoute } from './action';
-import { saveToken, dropToken } from '../services/token';
-import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
-import { handleHttpError  } from '../services/handle-http-error';
 import { AuthData } from '../types/auth-data';
-import {  UserLoginData } from '../types/user-data';
 import { FilmReview } from '../types/film-review';
+import { UserLoginData } from '../types/user-data';
 import { CommentPost, UserCommentData } from '../types/comment-post';
+import { saveToken, dropToken } from '../services/token';
+import { handleHttpError  } from '../services/handle-http-error';
 
-import { loadUserData, requireAuthorization } from './slices/user-data/user-data';
-import { loadFilms, loadComments, loadPromoFilm, loadSimilarFilms } from './slices/data/data';
+import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
+
+import { redirectToRoute } from './action';
 import { addComment } from './slices/action-data/action-data';
+import { loadUserData, requireAuthorization } from './slices/user-data/user-data';
+import { loadFilms, loadComments, loadPromoFilm, loadSimilarFilms } from './slices/app-data/app-data';
 
 
 export const fetchFilmsAction = createAsyncThunk(

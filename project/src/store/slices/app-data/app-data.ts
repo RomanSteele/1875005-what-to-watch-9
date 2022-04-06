@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpaceNew } from '../../../const';
 import { Data } from '../../../types/state';
+import { NameSpace } from '../../../const';
+
 
 const initialState: Data = {
   films: [],
@@ -29,7 +30,7 @@ const initialState: Data = {
 };
 
 export const data = createSlice ({
-  name: NameSpaceNew.data,
+  name: NameSpace.data,
   initialState,
   reducers: {
     loadComments: (state, action) => {

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpaceNew } from '../../../const';
 import { ActionData } from '../../../types/state';
+import { NameSpace } from '../../../const';
 
 const initialState: ActionData = {
   userComment: {
@@ -12,7 +12,7 @@ const initialState: ActionData = {
 };
 
 export const actionData = createSlice ({
-  name: NameSpaceNew.action,
+  name: NameSpace.action,
   initialState,
   reducers: {
     addComment: (state, action) => {

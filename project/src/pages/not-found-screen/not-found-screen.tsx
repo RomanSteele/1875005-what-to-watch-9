@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import UserBlock from '../../components/user-block/user-block';
 
 function NotFoundScreen(): JSX.Element{
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

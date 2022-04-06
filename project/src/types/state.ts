@@ -1,9 +1,9 @@
 import { store } from '../store/index';
-import { AuthorizationStatus } from '../const';
 import { Film } from './film';
-import { CommentPost } from './comment-post';
 import { FilmReview } from './film-review';
 import { UserLoginData } from './user-data';
+import { CommentPost } from './comment-post';
+import { AuthorizationStatus } from '../const';
 
 export type State = ReturnType<typeof store.getState>;
 

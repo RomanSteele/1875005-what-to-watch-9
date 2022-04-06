@@ -8,6 +8,7 @@ type SingleReviewProps = {
 
 
 function SingleReview({ reviews }: SingleReviewProps): JSX.Element {
+
   const { comment, date,  rating, user } = reviews;
 
   return (

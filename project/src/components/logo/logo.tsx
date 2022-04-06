@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 function Logo(): JSX.Element {
+
   return (
     <div className="logo">
       <Link to="/" className="logo__link">

@@ -4,6 +4,7 @@ import { ErrorType } from '../types/error';
 import { HttpCode } from '../const';
 
 export const handleHttpError  = (error: ErrorType): void => {
+
   if (!request.isAxiosError(error)) {
     throw error;
   }

@@ -10,6 +10,7 @@ function PlayerScreen({ films }: PlayerScreenProps): JSX.Element {
   const { id } = useParams() as {
     id: string;
   };
+
   const film = films[parseInt(id, 10)];
 
   const { videoLink, posterImage } = film;

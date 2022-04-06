@@ -6,6 +6,7 @@ type FilmsListProps = {
   films: Film[];
 };
 
+
 function FilmsList({ films }: FilmsListProps) {
 
   return (
