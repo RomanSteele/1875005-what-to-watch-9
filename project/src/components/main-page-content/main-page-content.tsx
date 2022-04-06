@@ -13,8 +13,8 @@ type MainPageContentProps = {
 
 function MainPageContent({ films }: MainPageContentProps): JSX.Element {
   const [genres, setGenres] = useState<string[]>([]);
-  const currentGenre = useAppSelector((state) => state.genre);
-  const filmsOfGenre = films.filter(({ genre }) => currentGenre === 'All genres' || currentGenre === genre);
+  const currentGenre = useAppSelector(({ CURRENT_GENRE }) => CURRENT_GENRE);
+  const filmsOfGenre = films.filter(({ genre }) => currentGenre.genre === 'All genres' || currentGenre.genre === genre);
 
   useEffect(() => {
     setGenres(['All genres', ...new Set(films.map(({ genre }) => genre))]);

@@ -16,7 +16,9 @@ import browserHistory from '../browser-history';
 
 
 function App(): JSX.Element {
-  const { authorizationStatus, isDataLoaded, films, promoFilm } = useAppSelector((state) => state);
+  const { authorizationStatus } = useAppSelector(({ AUTHORIZATION_DATA }) => AUTHORIZATION_DATA);
+  const { isDataLoaded, films } = useAppSelector(({ FILMS_DATA }) => FILMS_DATA);
+
 
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return (
@@ -29,7 +31,7 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen promoFilm={promoFilm} films={films}/>}
+          element={<MainScreen films={films}/>}
         />
         <Route
           path={AppRoute.Login}

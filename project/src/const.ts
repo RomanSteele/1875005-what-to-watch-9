@@ -44,3 +44,15 @@ export enum HttpCode {
   Unauthorized = 401,
   NotFound = 404,
 }
+
+export enum NameSpace {
+  authorizationData = 'AUTHORIZATION_DATA',
+  userData = 'USER_DATA',
+  filmsData = 'FILMS_DATA',
+  promoFilmData = 'PROMO_FILM_DATA',
+  similarFilmsData = 'SIMILAR_FILMS_DATA',
+  currentGenre = 'CURRENT_GENRE',
+  commentsData = 'COMMENTS_DATA',
+  postUserComment = 'POST_USER_COMMENT',
+  setFilmsError = 'FILM_SET_ERROR',
+}

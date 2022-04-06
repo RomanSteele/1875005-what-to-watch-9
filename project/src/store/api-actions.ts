@@ -1,22 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from '../store';
 import { Film } from '../types/film';
-import {
-  loadFilms,
-  requireAuthorization,
-  redirectToRoute,
-  loadComments,
-  loadPromoFilm,
-  addComment,
-  loadSimilarFilms,
-  loadUserData } from './action';
+import { redirectToRoute } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
-import { handleHttpError  } from '../services/http-errors';
+import { handleHttpError  } from '../services/handle-http-error';
 import { AuthData } from '../types/auth-data';
 import {  UserLoginData } from '../types/user-data';
 import { FilmReview } from '../types/film-review';
 import { CommentPost, UserCommentData } from '../types/comment-post';
+
+import { requireAuthorization } from './slices/authorization-data/authorization-data';
+import { loadFilms } from './slices/films-data/films-data';
+import { loadComments } from './slices/comments-data/comments-data';
+import { loadPromoFilm } from './slices/promo-film-data/promo-film-data';
+import { loadSimilarFilms } from './slices/similar-films-data/similar-films-data';
+import { addComment } from './slices/comment-post-data/comment-post-data';
+import { loadUserData } from './slices/user-data/user-data';
+
 
 export const fetchFilmsAction = createAsyncThunk(
   'data/fetchFilms',

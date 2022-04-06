@@ -3,15 +3,16 @@ import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import MainPageContent  from '../../components/main-page-content/main-page-content';
-
+import { useAppSelector } from '../../hooks/index';
 
 type MainScreenProps = {
   films: Film[];
-  promoFilm: Film;
 }
 
 
-function MainScreen({ films, promoFilm }: MainScreenProps): JSX.Element {
+function MainScreen({ films }: MainScreenProps): JSX.Element {
+
+  const { promoFilm } = useAppSelector(({ PROMO_FILM_DATA }) => PROMO_FILM_DATA);
   const { posterImage, name, genre, released } = promoFilm;
 
   return (
