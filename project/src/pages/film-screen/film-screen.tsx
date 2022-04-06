@@ -17,12 +17,10 @@ const enum SimilarFilmsArraySlice {
   End = 4,
 }
 
-type FilmScreenProps = {
-  films: Film[];
-};
+function FilmScreen(): JSX.Element {
 
-function FilmScreen({  films }: FilmScreenProps): JSX.Element {
-
+  const { comments, similarFilms, films } = useAppSelector(({ DATA })=> DATA);
+  const { authorizationStatus } = useAppSelector(({ USER }) => USER);
   const navigate = useNavigate();
   const params = useParams();
   const filmId = Number(params.id);
@@ -30,8 +28,7 @@ function FilmScreen({  films }: FilmScreenProps): JSX.Element {
 
 
   const { name, posterImage, genre, released } = film;
-  const {  comments, similarFilms } = useAppSelector(({ DATA })=> DATA);
-  const { authorizationStatus } = useAppSelector(({ USER }) => USER);
+
 
   useEffect(() => {
     if (!film) {
@@ -67,7 +64,10 @@ function FilmScreen({  films }: FilmScreenProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button onClick={() => {
+                  navigate(`${AppRoute.PlayerFilm}${film.id}`);
+                }} className="btn btn--play film-card__button" type="button"
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>

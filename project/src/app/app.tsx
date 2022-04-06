@@ -32,7 +32,7 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen films={films}/>}
+          element={<MainScreen />}
         />
         <Route
           path={AppRoute.Login}
@@ -46,7 +46,7 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmScreen  films={films}/>}
+          element={<FilmScreen />}
         />
         <Route
           path={AppRoute.MyList}

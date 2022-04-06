@@ -1,18 +1,15 @@
-import { Film } from '../../types/film';
+import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/index';
+import { AppRoute } from '../../const';
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
 import UserBlock from '../../components/user-block/user-block';
 import MainPageContent  from '../../components/main-page-content/main-page-content';
 
 
-type MainScreenProps = {
-  films: Film[];
-}
+function MainScreen(): JSX.Element {
 
-
-function MainScreen({ films }: MainScreenProps): JSX.Element {
-
+  const navigate = useNavigate();
   const { promoFilm } = useAppSelector(({ DATA }) => DATA);
   const { posterImage, name, genre, released } = promoFilm;
 
@@ -44,7 +41,10 @@ function MainScreen({ films }: MainScreenProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button onClick={() => {
+                  navigate(`${AppRoute.PlayerFilm}${promoFilm.id}`);
+                }}className="btn btn--play film-card__button" type="button"
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -63,7 +63,7 @@ function MainScreen({ films }: MainScreenProps): JSX.Element {
       </section>
 
       <div className="page-content">
-        <MainPageContent films={films}/>
+        <MainPageContent />
         <Footer />
       </div>
     </>

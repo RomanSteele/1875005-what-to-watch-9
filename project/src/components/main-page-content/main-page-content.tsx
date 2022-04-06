@@ -1,24 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks';
-import { Film } from '../../types/film';
+
 import FilmsList from '../../components/films-list/films-list';
 import CatalogGenresList from '../../components/catalog-genres-list/catalog-genres-list';
 
 const FILMS_PER_STEP = 8;
 
 
-type MainPageContentProps = {
-  films: Film[];
-}
-
-function MainPageContent({ films }: MainPageContentProps): JSX.Element {
+function MainPageContent(): JSX.Element {
 
   const [genres, setGenres] = useState<string[]>([]);
+  const films = useAppSelector(({ DATA }) => DATA);
   const currentGenre = useAppSelector(({ ACTION }) => ACTION);
-  const filmsOfGenre = films.filter(({ genre }) => currentGenre.genre === 'All genres' || currentGenre.genre === genre);
+  const filmsOfGenre = films.films.filter(({ genre }) => currentGenre.genre === 'All genres' || currentGenre.genre === genre);
 
   useEffect(() => {
-    setGenres(['All genres', ...new Set(films.map(({ genre }) => genre))]);
+    setGenres(['All genres', ...new Set(films.films.map(({ genre }) => genre))]);
   }, [films]);
 
   const [step, setStep] = useState(FILMS_PER_STEP);

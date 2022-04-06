@@ -16,6 +16,7 @@ export const actionData = createSlice ({
   initialState,
   reducers: {
     addComment: (state, action) => {
+      console.log(action.payload);
       state.userComment = action.payload;
     },
     updateGenre: (state, action) => {
