@@ -29,9 +29,8 @@ function FilmScreen({  films }: FilmScreenProps): JSX.Element {
 
 
   const { name, posterImage, genre, released } = film;
-  const {  comments } = useAppSelector(({ COMMENTS_DATA })=> COMMENTS_DATA);
-  const { authorizationStatus } = useAppSelector(({ AUTHORIZATION_DATA }) => AUTHORIZATION_DATA);
-  const { similarFilms } = useAppSelector(({ SIMILAR_FILMS_DATA }) => SIMILAR_FILMS_DATA);
+  const {  comments, similarFilms } = useAppSelector(({ DATA })=> DATA);
+  const { authorizationStatus } = useAppSelector(({ USER }) => USER);
 
   useEffect(() => {
     if (!film) {

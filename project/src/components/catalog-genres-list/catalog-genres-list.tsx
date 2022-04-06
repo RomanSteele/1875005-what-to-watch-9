@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { updateGenre } from '../../store/slices/current-genre-data/current-genre-data';
+import { updateGenre } from '../../store/slices/action-data/action-data';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 type CatalogGenresListProps = {
@@ -8,7 +8,7 @@ type CatalogGenresListProps = {
 
 function CatalogGenresList({ genres }: CatalogGenresListProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const currentGenre = useAppSelector(({ CURRENT_GENRE }) => CURRENT_GENRE);
+  const currentGenre = useAppSelector(({ ACTION }) => ACTION);
   return (
     <>
       {genres.map((item) => (

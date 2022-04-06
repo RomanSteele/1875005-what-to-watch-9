@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../../../const';
+import { NameSpaceNew, AuthorizationStatus } from '../../../const';
 import { UserData } from '../../../types/state';
 
 const initialState: UserData = {
+  authorizationStatus: AuthorizationStatus.Unknown,
   userLoginData: {
     avatarUrl: '',
     email: '',
@@ -12,14 +13,17 @@ const initialState: UserData = {
   },
 };
 
-export const userLoginData = createSlice ({
-  name: NameSpace.userData,
+export const userData = createSlice ({
+  name: NameSpaceNew.user,
   initialState,
   reducers: {
+    requireAuthorization: (state, action) => {
+      state.authorizationStatus = action.payload;
+    },
     loadUserData: (state, action) => {
       state.userLoginData = action.payload;
     },
   },
 });
 
-export const { loadUserData } = userLoginData.actions;
+export const { requireAuthorization, loadUserData } = userData.actions;

@@ -22,7 +22,6 @@ function Main() {
         <App  />
       </Provider>
     </React.StrictMode>);
-
 }
 
 ReactDOM.render(

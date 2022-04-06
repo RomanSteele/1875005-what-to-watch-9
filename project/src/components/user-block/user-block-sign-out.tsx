@@ -7,7 +7,7 @@ function UserBlockSignOut(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { userLoginData } = useAppSelector(({ USER_DATA })=> USER_DATA);
+  const { userLoginData } = useAppSelector(({ USER })=> USER);
 
   return (
     <div className="user-block">

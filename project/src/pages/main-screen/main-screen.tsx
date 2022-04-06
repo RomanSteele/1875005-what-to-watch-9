@@ -12,7 +12,7 @@ type MainScreenProps = {
 
 function MainScreen({ films }: MainScreenProps): JSX.Element {
 
-  const { promoFilm } = useAppSelector(({ PROMO_FILM_DATA }) => PROMO_FILM_DATA);
+  const { promoFilm } = useAppSelector(({ DATA }) => DATA);
   const { posterImage, name, genre, released } = promoFilm;
 
   return (

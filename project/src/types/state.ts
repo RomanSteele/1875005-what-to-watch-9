@@ -9,42 +9,20 @@ export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 
-export type FilmsData = {
+export type Data = {
   films: Film[],
   isDataLoaded: boolean,
-};
-
-export type CurrentGenre = {
-  genre: string,
-};
-
-export type AuthorizationData = {
-  authorizationStatus: AuthorizationStatus
-};
-
-export type CommentsData = {
   comments: FilmReview[],
-  isDataLoaded: boolean,
-};
-
-export type PromoFilmData = {
   promoFilm: Film,
-  isDataLoaded: boolean,
+  similarFilms: Film[],
 };
 
-export type PostUserComment = {
+export type ActionData = {
+  genre: string,
   userComment: CommentPost,
-}
-
-export type SimilarFilmsData = {
-  similarFilms: Film[],
-  isDataLoaded: boolean,
-}
+};
 
 export type UserData = {
+  authorizationStatus: AuthorizationStatus,
   userLoginData: UserLoginData,
-}
-
-export type ErrorData = {
-  error: string,
-}
+};

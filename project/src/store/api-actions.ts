@@ -10,13 +10,9 @@ import {  UserLoginData } from '../types/user-data';
 import { FilmReview } from '../types/film-review';
 import { CommentPost, UserCommentData } from '../types/comment-post';
 
-import { requireAuthorization } from './slices/authorization-data/authorization-data';
-import { loadFilms } from './slices/films-data/films-data';
-import { loadComments } from './slices/comments-data/comments-data';
-import { loadPromoFilm } from './slices/promo-film-data/promo-film-data';
-import { loadSimilarFilms } from './slices/similar-films-data/similar-films-data';
-import { addComment } from './slices/comment-post-data/comment-post-data';
-import { loadUserData } from './slices/user-data/user-data';
+import { loadUserData, requireAuthorization } from './slices/user-data/user-data';
+import { loadFilms, loadComments, loadPromoFilm, loadSimilarFilms } from './slices/data/data';
+import { addComment } from './slices/action-data/action-data';
 
 
 export const fetchFilmsAction = createAsyncThunk(
