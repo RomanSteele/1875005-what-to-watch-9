@@ -12,7 +12,7 @@ import {
   loadUserData } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
-import { setErrorHandle } from '../services/error-handle';
+import { handleHttpError  } from '../services/http-errors';
 import { AuthData } from '../types/auth-data';
 import {  UserLoginData } from '../types/user-data';
 import { FilmReview } from '../types/film-review';
@@ -25,7 +25,7 @@ export const fetchFilmsAction = createAsyncThunk(
       const { data } = await api.get<Film[]>(APIRoute.Films);
       store.dispatch(loadFilms(data));
     } catch (error) {
-      setErrorHandle(error);
+      handleHttpError (error);
     }
   },
 );
@@ -37,7 +37,7 @@ export const fetchCommentsAction = createAsyncThunk(
       const { data } = await api.get<FilmReview[]>(`${APIRoute.Comments}/${id}`);
       store.dispatch(loadComments(data));
     } catch (error) {
-      setErrorHandle(error);
+      handleHttpError (error);
     }
   },
 );
@@ -49,7 +49,7 @@ export const postComment = createAsyncThunk(
       await api.post<UserCommentData>(`${APIRoute.CommentPost}${id}`, { comment, rating });
       store.dispatch(addComment({ id, comment, rating }));
     } catch (error) {
-      setErrorHandle(error);
+      handleHttpError (error);
     }
   },
 );
@@ -61,7 +61,7 @@ export const fetchUserAction = createAsyncThunk(
       const { data } = await api.get<UserLoginData>(APIRoute.Login);
       store.dispatch(loadUserData(data));
     } catch (error) {
-      setErrorHandle(error);
+      handleHttpError (error);
     }
   },
 );
@@ -74,7 +74,7 @@ export const fetchPromoAction = createAsyncThunk(
       const { data } = await api.get<Film>(APIRoute.Promo);
       store.dispatch(loadPromoFilm(data));
     } catch (error) {
-      setErrorHandle(error);
+      handleHttpError (error);
     }
   },
 );
@@ -86,7 +86,7 @@ export const fetchSimilarFilmsAction = createAsyncThunk(
       const { data } = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
       store.dispatch(loadSimilarFilms(data));
     } catch (error) {
-      setErrorHandle(error);
+      handleHttpError (error);
     }
   },
 );
@@ -98,7 +98,7 @@ export const checkAuthAction = createAsyncThunk(
       await api.get(APIRoute.Login);
       store.dispatch(requireAuthorization(AuthorizationStatus.Authorized));
     } catch (error) {
-      setErrorHandle(error);
+      handleHttpError (error);
       store.dispatch(requireAuthorization(AuthorizationStatus.NotAuthorized));
     }
   },
@@ -114,7 +114,7 @@ export const loginAction = createAsyncThunk(
       store.dispatch(requireAuthorization(AuthorizationStatus.Authorized));
       store.dispatch(redirectToRoute(AppRoute.Main));
     } catch (error) {
-      setErrorHandle(error);
+      handleHttpError (error);
       store.dispatch(requireAuthorization(AuthorizationStatus.NotAuthorized));
     }
   },
@@ -128,7 +128,7 @@ export const logoutAction = createAsyncThunk(
       dropToken();
       store.dispatch(requireAuthorization(AuthorizationStatus.NotAuthorized));
     } catch (error) {
-      setErrorHandle(error);
+      handleHttpError (error);
     }
   },
 );

@@ -12,7 +12,7 @@ import { fetchCommentsAction, fetchSimilarFilmsAction  } from '../../store/api-a
 import { store } from '../../store';
 
 
-const enum similarFilmsSlice {
+const enum SimilarFilmsArraySlice {
   Start = 0,
   End = 4,
 }
@@ -26,7 +26,6 @@ function FilmScreen({  films }: FilmScreenProps): JSX.Element {
   const params = useParams();
   const filmId = Number(params.id);
   const film = films.find((item) => item.id === filmId) as Film;
-  console.log(film);
 
 
   const { name, posterImage, genre, released } = film;
@@ -99,7 +98,7 @@ function FilmScreen({  films }: FilmScreenProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            {similarFilms.slice(similarFilmsSlice.Start, similarFilmsSlice.End).map((item)=>(
+            {similarFilms.slice(SimilarFilmsArraySlice.Start, SimilarFilmsArraySlice.End).map((item)=>(
               <SingleFilmCard film={item} key={item.id} />
             ))}
           </div>
