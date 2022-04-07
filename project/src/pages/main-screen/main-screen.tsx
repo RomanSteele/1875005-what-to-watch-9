@@ -5,7 +5,7 @@ import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
 import UserBlock from '../../components/user-block/user-block';
 import MainPageContent  from '../../components/main-page-content/main-page-content';
-
+import AddToMyListButton from '../../components/add-to-my-list-button/add-to-my-list-button';
 
 function MainScreen(): JSX.Element {
 
@@ -50,12 +50,7 @@ function MainScreen(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <AddToMyListButton filmId={promoFilm.id}/>
               </div>
             </div>
           </div>

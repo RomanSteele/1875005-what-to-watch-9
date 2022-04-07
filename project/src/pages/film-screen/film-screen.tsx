@@ -10,7 +10,7 @@ import Logo from '../../components/logo/logo';
 import Tabs from '../../components/tabs/tabs';
 import UserBlock from '../../components/user-block/user-block';
 import SingleFilmCard from '../../components/single-card/single-card';
-
+import AddToMyListButton from '../../components/add-to-my-list-button/add-to-my-list-button';
 
 const enum SimilarFilmsArraySlice {
   Start = 0,
@@ -27,7 +27,7 @@ function FilmScreen(): JSX.Element {
   const film = films.find((item) => item.id === filmId) as Film;
 
 
-  const { name, posterImage, genre, released } = film;
+  const { id, name, posterImage, genre, released } = film;
 
 
   useEffect(() => {
@@ -73,12 +73,7 @@ function FilmScreen(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <AddToMyListButton filmId={id} />
                 {authorizationStatus === AuthorizationStatus.Authorized ? <Link className="btn film-card__button"to={`/films/${filmId}/review`}>Add review</Link>: ''}
               </div>
             </div>

@@ -9,6 +9,7 @@ const initialState: ActionData = {
     rating: 0,
   },
   genre: 'All genres',
+  myListFilms: [],
 };
 
 export const actionData = createSlice ({
@@ -16,13 +17,15 @@ export const actionData = createSlice ({
   initialState,
   reducers: {
     addComment: (state, action) => {
-      console.log(action.payload);
       state.userComment = action.payload;
     },
     updateGenre: (state, action) => {
       state.genre = action.payload;
     },
+    loadMyListFilms: (state, action) => {
+      state.myListFilms = action.payload;
+    },
   },
 });
 
-export const { addComment, updateGenre } = actionData.actions;
+export const { addComment, updateGenre, loadMyListFilms } = actionData.actions;

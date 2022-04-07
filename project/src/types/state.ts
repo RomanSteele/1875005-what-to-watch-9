@@ -20,6 +20,7 @@ export type Data = {
 export type ActionData = {
   genre: string,
   userComment: CommentPost,
+  myListFilms: Film[],
 };
 
 export type UserData = {

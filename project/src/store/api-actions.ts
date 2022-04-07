@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from '../store';
 import { Film } from '../types/film';
+import { PushFilmToMyList } from '../types/my-list-films';
 import { AuthData } from '../types/auth-data';
 import { FilmReview } from '../types/film-review';
 import { UserLoginData } from '../types/user-data';
@@ -11,7 +12,7 @@ import { handleHttpError  } from '../services/handle-http-error';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
 
 import { redirectToRoute } from './action';
-import { addComment } from './slices/action-data/action-data';
+import { addComment, loadMyListFilms } from './slices/action-data/action-data';
 import { loadUserData, requireAuthorization } from './slices/user-data/user-data';
 import { loadFilms, loadComments, loadPromoFilm, loadSimilarFilms } from './slices/app-data/app-data';
 
@@ -46,6 +47,7 @@ export const postComment = createAsyncThunk(
     try {
       await api.post<UserCommentData>(`${APIRoute.CommentPost}${id}`, { comment, rating });
       store.dispatch(addComment({ id, comment, rating }));
+      //store.dispatch(fetchCommentsAction());
     } catch (error) {
       handleHttpError (error);
     }
@@ -64,6 +66,29 @@ export const fetchUserAction = createAsyncThunk(
   },
 );
 
+export const fetchMyListFilm = createAsyncThunk(
+  'data/fetchMyListFilm',
+  async () => {
+    try {
+      const { data } = await api.get<Film[]>(APIRoute.MyListFilms);
+      store.dispatch(loadMyListFilms(data));
+    } catch (error) {
+      handleHttpError(error);
+    }
+  },
+);
+
+export const addMyListFilm = createAsyncThunk(
+  'film/addMyListFilm',
+  async ({ id, status }: PushFilmToMyList) => {
+    try {
+      await api.post<Film>(`${APIRoute.MyListFilms}/${id}/${status}`, { id, status });
+      store.dispatch(fetchMyListFilm());
+    } catch (error) {
+      handleHttpError(error);
+    }
+  },
+);
 
 export const fetchPromoAction = createAsyncThunk(
   'data/fetchPromo',

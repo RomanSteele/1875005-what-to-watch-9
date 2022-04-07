@@ -24,7 +24,8 @@ export enum APIRoute {
   Logout = '/logout',
   Comments = '/comments',
   CommentPost = '/comments/',
-  Promo = '/promo'
+  Promo = '/promo',
+  MyListFilms = '/favorite',
 }
 
 export const STARS: Stars[] = [
