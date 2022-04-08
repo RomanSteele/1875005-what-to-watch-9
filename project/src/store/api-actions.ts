@@ -9,7 +9,7 @@ import { CommentPost, UserCommentData } from '../types/comment-post';
 import { saveToken, dropToken } from '../services/token';
 import { handleHttpError  } from '../services/handle-http-error';
 
-import { APIRoute, AuthorizationStatus, AppRoute, ApiTypes } from '../const';
+import { APIRoute, AuthorizationStatus, AppRoute, ApiType } from '../const';
 
 import { redirectToRoute } from './action';
 import { addComment, loadMyListFilms } from './slices/action-data/action-data';
@@ -18,7 +18,7 @@ import { loadFilms, loadComments, loadPromoFilm, loadSimilarFilms } from './slic
 
 
 export const fetchFilmsAction = createAsyncThunk(
-  ApiTypes.DataFetchFilms,
+  ApiType.DataFetchFilms,
   async () => {
     try {
       const { data } = await api.get<Film[]>(APIRoute.Films);
@@ -30,7 +30,7 @@ export const fetchFilmsAction = createAsyncThunk(
 );
 
 export const fetchCommentsAction = createAsyncThunk(
-  ApiTypes.DataFetchComments,
+  ApiType.DataFetchComments,
   async (id: number | null) => {
     try {
       const { data } = await api.get<FilmReview[]>(`${APIRoute.Comments}/${id}`);
@@ -42,7 +42,7 @@ export const fetchCommentsAction = createAsyncThunk(
 );
 
 export const postComment = createAsyncThunk(
-  ApiTypes.FilmPostComment,
+  ApiType.FilmPostComment,
   async ({ id, comment, rating }: CommentPost) => {
     try {
       await api.post<UserCommentData>(`${APIRoute.CommentPost}${id}`, { comment, rating });
@@ -55,7 +55,7 @@ export const postComment = createAsyncThunk(
 );
 
 export const fetchUserAction = createAsyncThunk(
-  ApiTypes.UserData,
+  ApiType.UserData,
   async () => {
     try {
       const { data } = await api.get<UserLoginData>(APIRoute.Login);
@@ -67,7 +67,7 @@ export const fetchUserAction = createAsyncThunk(
 );
 
 export const fetchMyListFilm = createAsyncThunk(
-  ApiTypes.FetchMyListFilm,
+  ApiType.FetchMyListFilm,
   async () => {
     try {
       const { data } = await api.get<Film[]>(APIRoute.MyListFilms);
@@ -79,7 +79,7 @@ export const fetchMyListFilm = createAsyncThunk(
 );
 
 export const addMyListFilm = createAsyncThunk(
-  ApiTypes.AddMyListFilm,
+  ApiType.AddMyListFilm,
   async ({ id, status }: PushFilmToMyList) => {
     try {
       await api.post<Film>(`${APIRoute.MyListFilms}/${id}/${status}`, { id, status });
@@ -91,7 +91,7 @@ export const addMyListFilm = createAsyncThunk(
 );
 
 export const fetchPromoAction = createAsyncThunk(
-  ApiTypes.DataFetchPromo,
+  ApiType.DataFetchPromo,
   async () => {
     try {
       const { data } = await api.get<Film>(APIRoute.Promo);
@@ -103,7 +103,7 @@ export const fetchPromoAction = createAsyncThunk(
 );
 
 export const fetchSimilarFilmsAction = createAsyncThunk(
-  ApiTypes.DataLoadSimilarFilms,
+  ApiType.DataLoadSimilarFilms,
   async (id: number | null) => {
     try {
       const { data } = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
@@ -115,10 +115,11 @@ export const fetchSimilarFilmsAction = createAsyncThunk(
 );
 
 export const checkAuthAction = createAsyncThunk(
-  ApiTypes.UserCheckAuth,
+  ApiType.UserCheckAuth,
   async () => {
     try {
       await api.get(APIRoute.Login);
+      store.dispatch(fetchMyListFilm());
       store.dispatch(requireAuthorization(AuthorizationStatus.Authorized));
     } catch (error) {
       handleHttpError (error);
@@ -128,12 +129,13 @@ export const checkAuthAction = createAsyncThunk(
 );
 
 export const loginAction = createAsyncThunk(
-  ApiTypes.UserLogin,
+  ApiType.UserLogin,
   async ({ login: email, password }: AuthData) => {
     try {
       const { data } = await api.post<UserLoginData>(APIRoute.Login, { email, password });
       saveToken(data.token);
       store.dispatch(loadUserData(data));
+      store.dispatch(fetchMyListFilm());
       store.dispatch(requireAuthorization(AuthorizationStatus.Authorized));
       store.dispatch(redirectToRoute(AppRoute.Main));
     } catch (error) {
@@ -144,7 +146,7 @@ export const loginAction = createAsyncThunk(
 );
 
 export const logoutAction = createAsyncThunk(
-  ApiTypes.UserLogout,
+  ApiType.UserLogout,
   async () => {
     try {
       await api.delete(APIRoute.Logout);

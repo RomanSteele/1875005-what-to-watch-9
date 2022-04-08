@@ -14,7 +14,7 @@ function AddToMyListButton({ filmId }: AddToMyListButtonProps): JSX.Element {
   const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
   const [filmStatus, setFilmStatus] = useState(0);
 
-  const changeStatus = 1 - filmStatus;
+  const newFilmStatus = 1 - filmStatus;
 
   const addToMyList = (id: number, status: number) => {
     store.dispatch(addMyListFilm({ id, status }));
@@ -32,7 +32,7 @@ function AddToMyListButton({ filmId }: AddToMyListButtonProps): JSX.Element {
   }, [filmId, myListFilms]);
 
   return (
-    <button onClick={() => {addToMyList(filmId, changeStatus);}} className="btn btn--list film-card__button" type="button">
+    <button onClick={() => {addToMyList(filmId, newFilmStatus);}} className="btn btn--list film-card__button" type="button">
       <svg viewBox="0 0 19 20" width="19" height="20">
         {authorizationStatus === AuthorizationStatus.Authorized && filmStatus ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
       </svg>

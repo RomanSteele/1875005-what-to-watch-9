@@ -15,7 +15,7 @@ function PlayerScreen({ films }: PlayerScreenProps): JSX.Element {
 
   const params = useParams();
   const id = Number(params.id);
-  const film = films[id-1];
+  const film = films.find((item) => item.id === id) as Film;
 
   useEffect(() => {
     if (videoRef.current){
