@@ -1,7 +1,7 @@
 import { Film } from '../../types/film';
 import { useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-
+import { PlayerActiveStatus, TimeConvertion } from '../../const';
 type PlayerScreenProps = {
   films: Film[],
 }
@@ -13,34 +13,31 @@ function PlayerScreen({ films }: PlayerScreenProps): JSX.Element {
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  const { id } = useParams() as {
-    id: string;
-  };
+  const params = useParams();
+  const id = Number(params.id);
+  const film = films[id-1];
 
   useEffect(() => {
-    if (active) {
-      if (videoRef.current) {
+    if (videoRef.current){
+      if (active) {
         videoRef.current.play();
-      }
-    } else {
-      if (videoRef.current) {
+      } else {
         videoRef.current.pause();
       }
     }
   }, [active]);
 
-  const handlePlayFilm = () => {
+  const handlePlayButtonClick = () => {
     setActive(!active);
   };
 
-  const handleFullScreen = () => {
+  const handleFullScreenButtonClick = () => {
     videoRef.current?.requestFullscreen();
   };
 
-  const film = films[parseInt(id, 10)];
 
-  const getPercent = (runTime: number, currentTime: number) => ((currentTime * 100) / (runTime * 60)).toFixed(3);
-  const getLeftTime = (runTime: number, currentTime: number) => new Date(((runTime * 60) - currentTime) * 1000).toUTCString().split(/ /)[4];
+  const getPercent = (runTime: number, currentTime: number) => ((currentTime * TimeConvertion.SetPercent) / (runTime * TimeConvertion.SecondsInMinute)).toFixed(TimeConvertion.NumberAfterParse);
+  const getLeftTime = (runTime: number, currentTime: number) => new Date(((runTime * TimeConvertion.SecondsInMinute) - currentTime) * TimeConvertion.MilisecondsInSecond).toUTCString().split(/ /)[TimeConvertion.Limit];
 
   const { videoLink, posterImage } = film;
 
@@ -66,15 +63,15 @@ function PlayerScreen({ films }: PlayerScreenProps): JSX.Element {
         </div>
 
         <div className="player__controls-row">
-          <button onClick={() => {handlePlayFilm();}} type="button" className="player__play">
+          <button onClick={handlePlayButtonClick} type="button" className="player__play">
             <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref={active?'#pause':'#play-s'}></use>
+              <use xlinkHref={active ? PlayerActiveStatus.RefPause : PlayerActiveStatus.RefPlay}></use>
             </svg>
-            <span>{active?'Play':'Pause'}</span>
+            <span>{active ? PlayerActiveStatus.Play : PlayerActiveStatus.Pause}</span>
           </button>
           <div className="player__name">Transpotting</div>
 
-          <button onClick={() => {handleFullScreen();}}type="button" className="player__full-screen">
+          <button onClick={handleFullScreenButtonClick}type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>

@@ -6,7 +6,7 @@ import { actionData } from './slices/action-data/action-data';
 
 
 export const rootReducer = combineReducers({
-  [NameSpace.data]: data.reducer,
-  [NameSpace.user]: userData.reducer,
-  [NameSpace.action]: actionData.reducer,
+  [NameSpace.Data]: data.reducer,
+  [NameSpace.User]: userData.reducer,
+  [NameSpace.Action]: actionData.reducer,
 });

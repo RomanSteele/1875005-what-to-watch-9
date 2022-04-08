@@ -3,16 +3,18 @@ import { useAppSelector } from '../../hooks';
 import { store } from '../../store';
 import { addMyListFilm } from '../../store/api-actions';
 import { Film } from '../../types/film';
-
+import { AuthorizationStatus } from '../../const';
 
 type AddToMyListButtonProps = {
   filmId: number,
 }
 
 function AddToMyListButton({ filmId }: AddToMyListButtonProps): JSX.Element {
-  const myListFilms = useAppSelector(({ ACTION }) => ACTION);
-  const authorizationStatus = useAppSelector(({ USER }) => USER);
+  const myListFilms = useAppSelector(({ ACTION }) => ACTION.myListFilms);
+  const authorizationStatus = useAppSelector(({ USER }) => USER.authorizationStatus);
   const [filmStatus, setFilmStatus] = useState(0);
+
+  const changeStatus = 1 - filmStatus;
 
   const addToMyList = (id: number, status: number) => {
     store.dispatch(addMyListFilm({ id, status }));
@@ -22,7 +24,7 @@ function AddToMyListButton({ filmId }: AddToMyListButtonProps): JSX.Element {
     if (!myListFilms) {
       return;
     }
-    if (myListFilms.myListFilms.find((item: Film) => item.id === filmId)) {
+    if (myListFilms.find((item: Film) => item.id === filmId)) {
       setFilmStatus(1);
     } else {
       setFilmStatus(0);
@@ -30,9 +32,9 @@ function AddToMyListButton({ filmId }: AddToMyListButtonProps): JSX.Element {
   }, [filmId, myListFilms]);
 
   return (
-    <button onClick={() => {addToMyList(filmId, 1 - filmStatus);}} className="btn btn--list film-card__button" type="button">
+    <button onClick={() => {addToMyList(filmId, changeStatus);}} className="btn btn--list film-card__button" type="button">
       <svg viewBox="0 0 19 20" width="19" height="20">
-        {authorizationStatus.authorizationStatus === 'AUTH' && filmStatus ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
+        {authorizationStatus === AuthorizationStatus.Authorized && filmStatus ? <use xlinkHref="#in-list"></use> : <use xlinkHref="#add"></use>}
       </svg>
       <span>My list</span>
     </button>

@@ -30,7 +30,7 @@ const initialState: Data = {
 };
 
 export const data = createSlice ({
-  name: NameSpace.data,
+  name: NameSpace.Data,
   initialState,
   reducers: {
     loadComments: (state, action) => {

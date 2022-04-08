@@ -13,7 +13,7 @@ const initialState: ActionData = {
 };
 
 export const actionData = createSlice ({
-  name: NameSpace.action,
+  name: NameSpace.Action,
   initialState,
   reducers: {
     addComment: (state, action) => {
