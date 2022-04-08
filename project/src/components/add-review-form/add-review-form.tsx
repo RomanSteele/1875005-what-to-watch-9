@@ -1,10 +1,9 @@
 import React, { FormEvent, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { STARS, AppRoute } from '../../const';
+import { store } from '../../store';
 import { postComment } from '../../store/api-actions';
 import { CommentPost } from '../../types/comment-post';
-import { store } from '../../store';
-import { STARS, AppRoute } from '../../const';
-import { useParams, useNavigate } from 'react-router-dom';
-
 
 const enum CommentLength {
   Min = 50,

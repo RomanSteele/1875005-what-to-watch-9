@@ -1,17 +1,16 @@
-import Footer from '../../components/footer/footer';
-import { Film } from '../../types/film';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/index';
+import { AppRoute } from '../../const';
 import Logo from '../../components/logo/logo';
+import Footer from '../../components/footer/footer';
 import UserBlock from '../../components/user-block/user-block';
 import MainPageContent  from '../../components/main-page-content/main-page-content';
+import AddToMyListButton from '../../components/add-to-my-list-button/add-to-my-list-button';
 
+function MainScreen(): JSX.Element {
 
-type MainScreenProps = {
-  films: Film[];
-  promoFilm: Film;
-}
-
-
-function MainScreen({ films, promoFilm }: MainScreenProps): JSX.Element {
+  const navigate = useNavigate();
+  const { promoFilm } = useAppSelector(({ DATA }) => DATA);
   const { posterImage, name, genre, released } = promoFilm;
 
   return (
@@ -42,18 +41,16 @@ function MainScreen({ films, promoFilm }: MainScreenProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button onClick={() => {
+                  navigate(`${AppRoute.Player}${promoFilm.id}`);
+                }}className="btn btn--play film-card__button" type="button"
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <AddToMyListButton filmId={promoFilm.id}/>
               </div>
             </div>
           </div>
@@ -61,7 +58,7 @@ function MainScreen({ films, promoFilm }: MainScreenProps): JSX.Element {
       </section>
 
       <div className="page-content">
-        <MainPageContent films={films}/>
+        <MainPageContent />
         <Footer />
       </div>
     </>

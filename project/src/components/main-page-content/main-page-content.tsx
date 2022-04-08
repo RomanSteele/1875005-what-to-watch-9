@@ -1,27 +1,26 @@
-import { Film } from '../../types/film';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks';
+
+import { GenresStart } from '../../const';
+
 import FilmsList from '../../components/films-list/films-list';
 import CatalogGenresList from '../../components/catalog-genres-list/catalog-genres-list';
 
 const FILMS_PER_STEP = 8;
 
 
-type MainPageContentProps = {
-  films: Film[];
-}
+function MainPageContent(): JSX.Element {
 
-function MainPageContent({ films }: MainPageContentProps): JSX.Element {
   const [genres, setGenres] = useState<string[]>([]);
-  const currentGenre = useAppSelector((state) => state.genre);
-  const filmsOfGenre = films.filter(({ genre }) => currentGenre === 'All genres' || currentGenre === genre);
+  const films = useAppSelector(({ DATA }) => DATA.films);
+  const currentGenre = useAppSelector(({ ACTION }) => ACTION);
+  const filmsOfGenreArray = films.filter(({ genre }) => currentGenre.genre === GenresStart.AllGenres || currentGenre.genre === genre);
 
   useEffect(() => {
-    setGenres(['All genres', ...new Set(films.map(({ genre }) => genre))]);
+    setGenres([GenresStart.AllGenres, ...new Set(films.map(({ genre }) => genre))]);
   }, [films]);
 
   const [step, setStep] = useState(FILMS_PER_STEP);
-
 
   useEffect(() => {
     setStep(FILMS_PER_STEP);
@@ -40,10 +39,10 @@ function MainPageContent({ films }: MainPageContentProps): JSX.Element {
       </ul>
 
       <div className="catalog__films-list">
-        <FilmsList films={filmsOfGenre.slice(0, step)} />
+        <FilmsList films={filmsOfGenreArray.slice(0, step)} />
       </div>
 
-      {(filmsOfGenre.length > step) &&
+      {(filmsOfGenreArray.length > step) &&
       <div className="catalog__more">
         <button onClick={handleShowMoreFilms} className="catalog__button" type="button">Show more</button>
       </div>}

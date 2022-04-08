@@ -1,9 +1,9 @@
-import Footer from '../../components/footer/footer';
-import Logo from '../../components/logo/logo';
 import { useRef, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks/index';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/auth-data';
+import Logo from '../../components/logo/logo';
+import Footer from '../../components/footer/footer';
 
 
 function LoginScreen(): JSX.Element {

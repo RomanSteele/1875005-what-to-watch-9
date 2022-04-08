@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app/app';
 import { Provider } from 'react-redux';
+
+import App from './app/app';
 import { store } from './store/index';
 
 import { fetchFilmsAction, checkAuthAction, fetchPromoAction, fetchUserAction   } from './store/api-actions';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -22,7 +24,6 @@ function Main() {
         <App  />
       </Provider>
     </React.StrictMode>);
-
 }
 
 ReactDOM.render(

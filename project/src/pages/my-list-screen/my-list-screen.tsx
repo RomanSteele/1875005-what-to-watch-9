@@ -1,14 +1,12 @@
-import Footer from '../../components/footer/footer';
-import { Film } from '../../types/film';
-import MyFilmsList from '../../components/my-films-list/my-films-list';
+import { useAppSelector } from '../../hooks/index';
 import Logo from '../../components/logo/logo';
+import Footer from '../../components/footer/footer';
 import UserBlock from '../../components/user-block/user-block';
+import FilmsList from '../../components/films-list/films-list';
 
-type MyListScreenProps = {
-  films: Film[];
-};
 
-function MyListScreen({ films }: MyListScreenProps): JSX.Element {
+function MyListScreen(): JSX.Element {
+  const films = useAppSelector(({ ACTION })=>ACTION);
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -21,7 +19,7 @@ function MyListScreen({ films }: MyListScreenProps): JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          <MyFilmsList films={films} />
+          <FilmsList films={films.myListFilms} />
         </div>
       </section>
       <Footer />

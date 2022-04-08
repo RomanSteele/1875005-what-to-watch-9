@@ -1,9 +1,10 @@
 import { Link, useParams } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { Film } from '../../types/film';
-import AddReviewForm from '../../components/add-review-form/add-review-form';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import { AppRoute } from '../../const';
+import AddReviewForm from '../../components/add-review-form/add-review-form';
+
 
 type AddReviewScreenProps = {
   films: Film[];

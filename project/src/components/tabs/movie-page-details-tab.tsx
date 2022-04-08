@@ -6,6 +6,7 @@ type MoviePageDetailsTabProps = {
 }
 
 function MoviePageDetailsTab({ film }: MoviePageDetailsTabProps): JSX.Element {
+
   const { director, starring, runTime, genre, released } = film;
 
   return (

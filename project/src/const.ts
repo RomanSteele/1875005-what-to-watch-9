@@ -7,7 +7,8 @@ export enum AppRoute {
   Film = '/films/:id',
   FilmPage = '/films',
   Review = '/films/:id/review',
-  Player = '/player/:id',
+  PlayerFilm = '/player/:id',
+  Player = '/player/',
   NotFound = '/404',
 }
 
@@ -23,7 +24,8 @@ export enum APIRoute {
   Logout = '/logout',
   Comments = '/comments',
   CommentPost = '/comments/',
-  Promo = '/promo'
+  Promo = '/promo',
+  MyListFilms = '/favorite',
 }
 
 export const STARS: Stars[] = [
@@ -43,4 +45,43 @@ export enum HttpCode {
   BadRequest = 400,
   Unauthorized = 401,
   NotFound = 404,
+}
+
+export enum NameSpace {
+  User = 'USER',
+  Data = 'DATA',
+  Action = 'ACTION',
+}
+
+export enum ApiTypes {
+  UserLogout = 'user/logout',
+  UserLogin = 'user/login',
+  UserCheckAuth = 'user/checkAuth',
+  DataLoadSimilarFilms = 'data/loadSimilarFilms',
+  DataFetchPromo = 'data/fetchPromo',
+  AddMyListFilm = 'film/addMyListFilm',
+  FetchMyListFilm = 'data/fetchMyListFilm',
+  UserData = 'user/userData',
+  FilmPostComment = 'film/postComment',
+  DataFetchComments = 'data/fetchComments',
+  DataFetchFilms = 'data/fetchFilms',
+}
+
+export enum PlayerActiveStatus {
+  RefPlay = '#play-s',
+  RefPause = '#pause',
+  Play = 'Play',
+  Pause = 'Pause'
+}
+
+export enum GenresStart {
+  AllGenres = 'All genres',
+}
+
+export enum TimeConvertion {
+  SecondsInMinute = 60,
+  MilisecondsInSecond = 1000,
+  SetPercent = 100,
+  NumberAfterParse = 3,
+  Limit = 4,
 }

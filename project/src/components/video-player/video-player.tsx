@@ -8,6 +8,7 @@ type VideoPlayerProps = {
 }
 
 function VideoPlayer({ autoPlay, film }: VideoPlayerProps): JSX.Element {
+
   const { id, name, previewVideoLink, posterImage } = film;
 
   const [isPlaying, setIsPlaying] = useState(autoPlay);

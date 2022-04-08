@@ -1,36 +1,33 @@
 import { useEffect } from 'react';
-import Footer from '../../components/footer/footer';
-import { Film } from '../../types/film';
-import Logo from '../../components/logo/logo';
-import UserBlock from '../../components/user-block/user-block';
-import Tabs from '../../components/tabs/tabs';
-import SingleFilmCard from '../../components/single-card/single-card';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/index';
-import { AuthorizationStatus, AppRoute } from '../../const';
-import { fetchCommentsAction, fetchSimilarFilmsAction  } from '../../store/api-actions';
 import { store } from '../../store';
+import { Film } from '../../types/film';
+import { fetchCommentsAction, fetchSimilarFilmsAction  } from '../../store/api-actions';
+import { AuthorizationStatus, AppRoute } from '../../const';
+import Footer from '../../components/footer/footer';
+import Logo from '../../components/logo/logo';
+import Tabs from '../../components/tabs/tabs';
+import UserBlock from '../../components/user-block/user-block';
+import SingleFilmCard from '../../components/single-card/single-card';
+import AddToMyListButton from '../../components/add-to-my-list-button/add-to-my-list-button';
 
-
-const enum similarFilmsSlice {
+const enum SimilarFilmsArraySlice {
   Start = 0,
   End = 4,
 }
 
-type FilmScreenProps = {
-  films: Film[];
-};
+function FilmScreen(): JSX.Element {
 
-function FilmScreen({  films }: FilmScreenProps): JSX.Element {
+  const { comments, similarFilms, films } = useAppSelector(({ DATA })=> DATA);
+  const { authorizationStatus } = useAppSelector(({ USER }) => USER);
   const navigate = useNavigate();
   const params = useParams();
   const filmId = Number(params.id);
   const film = films.find((item) => item.id === filmId) as Film;
-  console.log(film);
 
 
-  const { name, posterImage, genre, released } = film;
-  const { authorizationStatus, comments, similarFilms } = useAppSelector((state)=> state);
+  const { id, name, posterImage, genre, released } = film;
 
 
   useEffect(() => {
@@ -67,18 +64,16 @@ function FilmScreen({  films }: FilmScreenProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button onClick={() => {
+                  navigate(`${AppRoute.Player}${film.id}`);
+                }} className="btn btn--play film-card__button" type="button"
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <AddToMyListButton filmId={id} />
                 {authorizationStatus === AuthorizationStatus.Authorized ? <Link className="btn film-card__button"to={`/films/${filmId}/review`}>Add review</Link>: ''}
               </div>
             </div>
@@ -99,7 +94,7 @@ function FilmScreen({  films }: FilmScreenProps): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            {similarFilms.slice(similarFilmsSlice.Start, similarFilmsSlice.End).map((item)=>(
+            {similarFilms.slice(SimilarFilmsArraySlice.Start, SimilarFilmsArraySlice.End).map((item)=>(
               <SingleFilmCard film={item} key={item.id} />
             ))}
           </div>

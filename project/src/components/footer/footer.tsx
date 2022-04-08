@@ -1,5 +1,5 @@
-
 function Footer(): JSX.Element {
+
   return (
     <footer className="page-footer">
       <div className="logo">

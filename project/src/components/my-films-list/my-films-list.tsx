@@ -1,4 +1,3 @@
-
 import { Film } from '../../types/film';
 import SingleFilmCard from '../single-card/single-card';
 

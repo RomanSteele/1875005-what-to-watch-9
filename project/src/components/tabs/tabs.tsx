@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Film } from '../../types/film';
 import { Review } from '../../types/reviews';
+import MoviePageTab from '../tabs/movie-page-tab';
 import MoviePageDetailsTab from '../tabs/movie-page-details-tab';
 import MoviePageReviewsTab from '../tabs/movie-page-reviews-tab';
-import MoviePageTab from '../tabs/movie-page-tab';
+
 
 type TabsProps = {
   film: Film,
