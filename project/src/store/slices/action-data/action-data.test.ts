@@ -7,30 +7,31 @@ const currentGenre = makeFakeGenre();
 const myListFilms = new Array(10).fill(null).map(() => ({ makeFakeFilmsItem }));
 
 describe('Reducer: actionData', () => {
+  const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [] };
 
   describe('Function: addComment', () => {
     it('without additional parameters should return initial state', () => {
       expect(actionData.reducer(void 0, { type: 'UNKNOWN_ACTION' }))
-        .toEqual({ userComment: userEmptyInfo });
+        .toEqual({ ...state, userComment: userEmptyInfo });
     });
 
     it('should update comments by load comments', () => {
-      const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [] };
+      //const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [] };
       expect(actionData.reducer(state, addComment(userComment)))
-        .toEqual({ userComment });
+        .toEqual({ ...state, userComment });
     });
 
 
     describe('Function: updateGenre', () => {
       it('without additional parameters should return initial state', () => {
         expect(actionData.reducer(void 0, { type: 'UNKNOWN_ACTION' }))
-          .toEqual({ genre: 'All genres' });
+          .toEqual({ ...state, genre: 'All genres' });
       });
 
       it('should update genres by load genres', () => {
-        const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [] };
+        //const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [] };
         expect(actionData.reducer(state, updateGenre(currentGenre)))
-          .toEqual({ currentGenre });
+          .toEqual( { ...state, genre: currentGenre });
       });
     });
 
@@ -38,13 +39,13 @@ describe('Reducer: actionData', () => {
     describe('Function: loadMyListFilms', () => {
       it('without additional parameters should return initial state', () => {
         expect(actionData.reducer(void 0, { type: 'UNKNOWN_ACTION' }))
-          .toEqual({ favoriteFilms: [] });
+          .toEqual({ ...state, myListFilms: [] });
       });
 
       it('should update films by load films', () => {
-        const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [] };
+        //const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [] };
         expect(actionData.reducer(state, loadMyListFilms(myListFilms)))
-          .toEqual({ myListFilms });
+          .toEqual({ ...state, myListFilms });
       });
     });
   });

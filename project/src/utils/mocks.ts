@@ -17,7 +17,7 @@ export const makeUserData = (): CommentPost => ({
 } as unknown as CommentPost);
 
 export const makeFakeGenre = (): string => ({
-  selectedGenre: random.word,
+  genre: random.word,
 } as unknown as string);
 
 export const makeFakeFilmsItem = (): Film => ({
