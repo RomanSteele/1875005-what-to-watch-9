@@ -13,7 +13,7 @@ describe('Component: LoadingScreen', () => {
       </HistoryRouter>,
     );
 
-    const headerElement = screen.getByText('Loading data, please wait or try reloading the page.');
+    const headerElement = screen.getByText('Loading...');
 
     expect(headerElement).toBeInTheDocument();
   });
