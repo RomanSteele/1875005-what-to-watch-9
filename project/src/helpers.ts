@@ -10,5 +10,5 @@ export const convertTime = (value: number) => {
   return `${roundedhours}h ${roundedminutes}m`;
 };
 
-export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
+export const getCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;

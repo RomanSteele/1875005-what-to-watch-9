@@ -11,3 +11,6 @@ export type UserLoginData = {
   name: string,
   token: string,
 };
+
+export type CommentSendStatus = boolean ;
+

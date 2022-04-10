@@ -1,7 +1,7 @@
 import { store } from '../store/index';
 import { Film } from './film';
 import { FilmReview } from './film-review';
-import { UserLoginData } from './user-data';
+import { CommentSendStatus, UserLoginData } from './user-data';
 import { CommentPost } from './comment-post';
 import { AuthorizationStatus } from '../const';
 
@@ -21,9 +21,11 @@ export type ActionData = {
   genre: string,
   userComment: CommentPost,
   myListFilms: Film[],
+  commentSendStatusItem: CommentSendStatus,
 };
 
 export type UserData = {
   authorizationStatus: AuthorizationStatus,
   userLoginData: UserLoginData,
 };
+
