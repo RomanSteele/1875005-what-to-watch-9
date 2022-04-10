@@ -53,7 +53,7 @@ export enum NameSpace {
   Action = 'ACTION',
 }
 
-export enum ApiTypes {
+export enum ApiType {
   UserLogout = 'user/logout',
   UserLogin = 'user/login',
   UserCheckAuth = 'user/checkAuth',
