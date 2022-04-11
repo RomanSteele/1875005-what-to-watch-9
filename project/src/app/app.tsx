@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../const';
-import { getCheckedAuth } from '../helpers';
+import { isAuthStatusUnknown } from '../helpers';
 import { useAppSelector } from '../hooks/index';
 import MainScreen from '../pages/main-screen/main-screen';
 import LoginScreen from '../pages/login-screen/login-screen';
@@ -19,7 +19,7 @@ function App(): JSX.Element {
   const { isDataLoaded, films } = useAppSelector(({ DATA }) => DATA);
 
 
-  if (getCheckedAuth(authorizationStatus) || !isDataLoaded) {
+  if (isAuthStatusUnknown(authorizationStatus) || !isDataLoaded) {
     return (
       <LoadingScreen />
     );

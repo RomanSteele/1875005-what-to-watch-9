@@ -6,7 +6,7 @@ import { ErrorType } from '../types/error';
 export const handleHttpError  = (error: ErrorType): void => {
 
   if (!request.isAxiosError(error)) {
-    throw error;
+    return ;
   }
 
   const { response } = error;
@@ -24,4 +24,5 @@ export const handleHttpError  = (error: ErrorType): void => {
         break;
     }
   }
+  toast.error('Error! Lost connection!');
 };
