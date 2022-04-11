@@ -85,3 +85,5 @@ export enum TimeConvertion {
   NumberAfterParse = 3,
   Limit = 4,
 }
+
+export const VIDEO_PREVIEW_DELAY = 1000;

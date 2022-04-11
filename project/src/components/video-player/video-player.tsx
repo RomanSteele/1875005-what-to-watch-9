@@ -2,9 +2,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Film } from '../../types/film';
-import { AppRoute } from '../../const';
-
-const VIDEO_PREVIEW_DELAY = 1000;
+import { AppRoute, VIDEO_PREVIEW_DELAY } from '../../const';
 
 type VideoPlayerProps = {
     autoPlay: boolean,
