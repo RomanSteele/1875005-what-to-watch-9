@@ -13,7 +13,7 @@ import { handleHttpError  } from '../services/handle-http-error';
 import { APIRoute, AuthorizationStatus, AppRoute, ApiType } from '../const';
 
 import { redirectToRoute } from './action';
-import { addComment, loadMyListFilms, commentSendStatus } from './slices/action-data/action-data';
+import { addComment, loadMyListFilms, isLoading } from './slices/action-data/action-data';
 import { loadUserData, requireAuthorization } from './slices/user-data/user-data';
 import { loadFilms, loadComments, loadPromoFilm, loadSimilarFilms } from './slices/app-data/app-data';
 
@@ -58,13 +58,14 @@ export const postComment = createAsyncThunk<void, CommentPost, {
   ApiType.FilmPostComment,
   async ({ id, comment, rating }, { dispatch, extra: api }) => {
     try {
-      dispatch(commentSendStatus(false));
+      dispatch(isLoading(false));
       await api.post<UserCommentData>(`${APIRoute.CommentPost}${id}`, { comment, rating });
-      dispatch(commentSendStatus(true));
+      dispatch(isLoading(true));
       dispatch(addComment({ id, comment, rating }));
       dispatch(redirectToRoute(`/films/${id}`));
     } catch (error) {
       handleHttpError (error);
+      dispatch(isLoading(true));
     }
   },
 );
@@ -79,11 +80,15 @@ export const fetchUserAction = createAsyncThunk<void, undefined, {
     try {
       const { data } = await api.get<UserLoginData>(APIRoute.Login);
       dispatch(loadUserData(data));
+      dispatch(fetchMyListFilm());
+      dispatch(requireAuthorization(AuthorizationStatus.Authorized));
     } catch (error) {
       handleHttpError (error);
+      dispatch(requireAuthorization(AuthorizationStatus.NotAuthorized));
     }
   },
 );
+
 
 export const fetchMyListFilm = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
@@ -149,23 +154,6 @@ export const fetchSimilarFilmsAction = createAsyncThunk<void, number | null, {
   },
 );
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance
-}>(
-  ApiType.UserCheckAuth,
-  async (_arg, { dispatch, extra: api }) => {
-    try {
-      await api.get(APIRoute.Login);
-      dispatch(fetchMyListFilm());
-      dispatch(requireAuthorization(AuthorizationStatus.Authorized));
-    } catch (error) {
-      handleHttpError (error);
-      dispatch(requireAuthorization(AuthorizationStatus.NotAuthorized));
-    }
-  },
-);
 
 export const loginAction = createAsyncThunk<void, AuthData, {
   dispatch: AppDispatch,

@@ -7,7 +7,7 @@ const currentGenre = makeFakeGenre();
 const myListFilms = new Array(10).fill(null).map(() => ({ makeFakeFilmsItem }));
 
 describe('Reducer: actionData', () => {
-  const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [], commentSendStatusItem: true };
+  const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [], changeLoadingStatus: true };
 
   describe('Function: addComment', () => {
     it('without additional parameters should return initial state', () => {
@@ -16,7 +16,6 @@ describe('Reducer: actionData', () => {
     });
 
     it('should update comments by load comments', () => {
-      //const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [] };
       expect(actionData.reducer(state, addComment(userComment)))
         .toEqual({ ...state, userComment });
     });
@@ -29,7 +28,6 @@ describe('Reducer: actionData', () => {
       });
 
       it('should update genres by load genres', () => {
-        //const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [] };
         expect(actionData.reducer(state, updateGenre(currentGenre)))
           .toEqual( { ...state, genre: currentGenre });
       });
@@ -43,7 +41,6 @@ describe('Reducer: actionData', () => {
       });
 
       it('should update films by load films', () => {
-        //const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [] };
         expect(actionData.reducer(state, loadMyListFilms(myListFilms)))
           .toEqual({ ...state, myListFilms });
       });
