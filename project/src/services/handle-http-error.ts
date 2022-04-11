@@ -23,6 +23,7 @@ export const handleHttpError  = (error: ErrorType): void => {
         toast.error(response.data.error);
         break;
     }
+  } else {
+    toast.error('Error! Lost connection!');
   }
-  toast.error('Error! Lost connection!');
 };

@@ -7,8 +7,8 @@ import { CommentPost } from '../../types/comment-post';
 import {  useAppSelector } from '../../hooks';
 
 const enum CommentLength {
-  Min = 49,
-  Max = 401,
+  Min = 50,
+  Max = 400,
 }
 
 const enum StarsStart {
