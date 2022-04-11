@@ -4,11 +4,11 @@ const minutesInHour = 60;
 
 export const convertTime = (value: number) => {
   const hours = (value / minutesInHour);
-  const roundedhours = Math.floor(hours);
-  const minutes = (hours - roundedhours) * minutesInHour;
-  const roundedminutes = Math.round(minutes);
-  return `${roundedhours}h ${roundedminutes}m`;
+  const roundedHours = Math.floor(hours);
+  const minutes = (hours - roundedHours) * minutesInHour;
+  const roundedMinutes = Math.round(minutes);
+  return `${roundedHours}h ${roundedMinutes}m`;
 };
 
-export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean =>
+export const isAuthStatusUnknown = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;

@@ -10,6 +10,7 @@ const initialState: ActionData = {
   },
   genre: 'All genres',
   myListFilms: [],
+  isLoading: true,
 };
 
 export const actionData = createSlice ({
@@ -25,7 +26,10 @@ export const actionData = createSlice ({
     loadMyListFilms: (state, action) => {
       state.myListFilms = action.payload;
     },
+    changeLoadingStatus: (state, action) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
-export const { addComment, updateGenre, loadMyListFilms } = actionData.actions;
+export const { addComment, updateGenre, loadMyListFilms, changeLoadingStatus } = actionData.actions;
