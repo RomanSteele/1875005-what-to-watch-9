@@ -42,7 +42,7 @@ function AddReviewForm(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if ( commentData.length > CommentLength.Min || commentData.length < CommentLength.Max) {
+    if ( !isDisabled ) {
       sendOnSubmit(
         {
           id: id,
