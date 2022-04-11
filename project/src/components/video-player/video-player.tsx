@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Film } from '../../types/film';
 import { AppRoute } from '../../const';
 
+const VIDEO_PREVIEW_DELAY = 1000;
+
 type VideoPlayerProps = {
     autoPlay: boolean,
     film: Film,
@@ -25,7 +27,7 @@ function VideoPlayer({ autoPlay, film }: VideoPlayerProps): JSX.Element {
       if (!isLoading) {
         videoRef.current && videoRef.current.play();
       }
-    }, 1000));
+    }, VIDEO_PREVIEW_DELAY));
   };
 
   const handleOnMouseLeave = () => {
