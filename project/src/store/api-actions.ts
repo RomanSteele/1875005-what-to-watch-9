@@ -13,7 +13,7 @@ import { handleHttpError  } from '../services/handle-http-error';
 import { APIRoute, AuthorizationStatus, AppRoute, ApiType } from '../const';
 
 import { redirectToRoute } from './action';
-import { addComment, loadMyListFilms, isLoading } from './slices/action-data/action-data';
+import { addComment, loadMyListFilms, changeLoadingStatus } from './slices/action-data/action-data';
 import { loadUserData, requireAuthorization } from './slices/user-data/user-data';
 import { loadFilms, loadComments, loadPromoFilm, loadSimilarFilms } from './slices/app-data/app-data';
 
@@ -58,14 +58,14 @@ export const postComment = createAsyncThunk<void, CommentPost, {
   ApiType.FilmPostComment,
   async ({ id, comment, rating }, { dispatch, extra: api }) => {
     try {
-      dispatch(isLoading(false));
+      dispatch(changeLoadingStatus(false));
       await api.post<UserCommentData>(`${APIRoute.CommentPost}${id}`, { comment, rating });
-      dispatch(isLoading(true));
+      dispatch(changeLoadingStatus(true));
       dispatch(addComment({ id, comment, rating }));
       dispatch(redirectToRoute(`/films/${id}`));
     } catch (error) {
       handleHttpError (error);
-      dispatch(isLoading(true));
+      dispatch(changeLoadingStatus(true));
     }
   },
 );

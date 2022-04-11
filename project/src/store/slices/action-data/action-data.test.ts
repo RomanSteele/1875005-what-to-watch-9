@@ -7,7 +7,7 @@ const currentGenre = makeFakeGenre();
 const myListFilms = new Array(10).fill(null).map(() => ({ makeFakeFilmsItem }));
 
 describe('Reducer: actionData', () => {
-  const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [], changeLoadingStatus: true };
+  const state = { userComment: userEmptyInfo, genre: 'All genres', myListFilms: [], isLoading: true };
 
   describe('Function: addComment', () => {
     it('without additional parameters should return initial state', () => {

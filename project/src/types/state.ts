@@ -21,7 +21,7 @@ export type ActionData = {
   genre: string,
   userComment: CommentPost,
   myListFilms: Film[],
-  changeLoadingStatus: CommentSendStatus,
+  isLoading: CommentSendStatus,
 };
 
 export type UserData = {

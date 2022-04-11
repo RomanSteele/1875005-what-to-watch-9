@@ -21,7 +21,7 @@ function AddReviewForm(): JSX.Element {
   const [commentData, setCommentData] = useState<string>('');
   const [ratingData, setRatingData] = useState<number>(0);
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  const sendStatus = useAppSelector(({ ACTION }) => ACTION.changeLoadingStatus);
+  const sendStatus = useAppSelector(({ ACTION }) => ACTION.isLoading);
 
   const handleCommentAdd = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const enteredComment = event.target.value;
